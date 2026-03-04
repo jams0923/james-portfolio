@@ -3,91 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chung-Hsuan (James) Huang | Portfolio</title>
+    <title>James Huang | Mechanical & RF Design Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+TC:wght@400;700&display=swap');
-        body { font-family: 'Inter', 'Noto Sans TC', sans-serif; background-color: #020617; color: #f8fafc; scroll-behavior: smooth; }
-        .project-card { background: rgba(30, 41, 59, 0.4); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.4s ease; }
-        .project-card:hover { border-color: #22d3ee; transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); }
-        .gradient-text { background: linear-gradient(135deg, #22d3ee 0%, #3b82f6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Noto+Sans+TC:wght@400;700&display=swap');
+        
+        :root {
+            --primary-cyan: #22d3ee;
+            --primary-blue: #3b82f6;
+            --dark-bg: #020617;
+            --card-bg: rgba(30, 41, 59, 0.5);
+        }
+
+        body { 
+            font-family: 'Inter', 'Noto Sans TC', sans-serif; 
+            background-color: var(--dark-bg); 
+            color: #f8fafc; 
+            scroll-behavior: smooth; 
+        }
+
+        .glass-header {
+            background: rgba(2, 6, 23, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary-cyan) 0%, var(--primary-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .project-card:hover {
+            border-color: var(--primary-cyan);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .metric-tile {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .skill-pill {
+            background: rgba(34, 211, 238, 0.1);
+            color: var(--primary-cyan);
+            border: 1px solid rgba(34, 211, 238, 0.2);
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
         [lang="zh"] { display: none; }
     </style>
 </head>
-<body>
+<body class="selection:bg-cyan-500/30">
 
-    <nav class="fixed w-full z-50 bg-[#020617]/90 backdrop-blur-md border-b border-slate-800 px-6 h-16 flex justify-between items-center">
-        <div class="text-lg font-bold gradient-text font-mono">CHUNG-HSUAN HUANG</div>
-        <div class="flex items-center space-x-6">
-            <button onclick="toggleLang()" class="text-xs border border-cyan-500/50 text-cyan-400 px-3 py-1 rounded-full hover:bg-cyan-500/10 transition">
-                <span lang="en">繁體中文</span><span lang="zh">English</span>
+    <header class="glass-header fixed w-full z-50 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="text-xl font-bold tracking-tighter gradient-text">JAMES HUANG</div>
+            <nav class="hidden md:flex space-x-8 text-[11px] font-bold tracking-[0.2em] uppercase text-slate-400">
+                <a href="#about" class="hover:text-cyan-400 transition">About</a>
+                <a href="#experience" class="hover:text-cyan-400 transition">Experience</a>
+                <a href="#projects" class="hover:text-cyan-400 transition">Projects</a>
+                <a href="#contact" class="hover:text-cyan-400 transition">Contact</a>
+            </nav>
+            <button onclick="toggleLang()" class="px-4 py-1.5 border border-slate-700 rounded-full text-xs font-bold hover:bg-slate-800 transition">
+                <span lang="en">繁中</span><span lang="zh">EN</span>
             </button>
         </div>
-    </nav>
+    </header>
 
-    <section class="min-h-[60vh] flex items-center pt-24 px-6 max-w-5xl mx-auto">
-        <div>
-            <h2 class="text-cyan-500 font-mono mb-4 tracking-widest uppercase">
-                <span lang="en">// Mechanical Engineer | RF System Integrator</span>
-                <span lang="zh">// 機械設計工程師 | 射頻系統整合</span>
-            </h2>
+    <section id="about" class="pt-40 pb-20 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="inline-block px-3 py-1 bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-[10px] font-bold tracking-widest rounded mb-6 uppercase">
+                <span lang="en">Mechanical Design Engineer</span><span lang="zh">機械設計工程師</span>
+            </div>
             <h1 class="text-5xl md:text-7xl font-bold mb-8 leading-tight">
-                <span lang="en">Engineering Precision for <br><span class="gradient-text">High-Frequency Systems</span></span>
-                <span lang="zh">為高頻系統打造<br><span class="gradient-text">精密工程解決方案</span></span>
+                <span lang="en">Engineering Precision for <br><span class="gradient-text">RF Systems</span></span>
+                <span lang="zh">為<span class="gradient-text">射頻系統</span>打造<br>極致精密的工程方案</span>
             </h1>
-            <p class="text-slate-400 text-lg max-w-3xl leading-relaxed">
-                <span lang="en">Specialized in mechanical architecture, thermal management, and EMI/EMC shielding for RF infrastructures. Delivering measurable results aligned with Engineers Australia (EA) standards.</span>
-                <span lang="zh">專長於射頻基礎設施的機械架構、熱傳管理與 EMI/EMC 屏蔽設計。依據 Engineers Australia (EA) 專業標準提供可量化的工程成果。</span>
+            <p class="text-slate-400 text-lg leading-relaxed mb-10 max-w-2xl">
+                <span lang="en">Specialized in RF test systems, precision fixtures, thermal management, and manufacturable mechanical design. Building stable, repeatable infrastructure for antenna and wireless module evaluation.</span>
+                <span lang="zh">專精於射頻測試系統、精密治具、熱傳管理及具備可製造性的機械設計。為天線與無線模組量測打造穩定且具備高重複性的基礎設施。</span>
             </p>
+            <div class="flex flex-wrap gap-4">
+                <a href="#projects" class="px-8 py-3 bg-cyan-600 hover:bg-cyan-500 text-white font-bold rounded-lg transition shadow-lg shadow-cyan-900/20">
+                    <span lang="en">View Projects</span><span lang="zh">查看專案成果</span>
+                </a>
+                <a href="mailto:jams923@hotmail.com" class="px-8 py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-lg transition border border-slate-700">
+                    <span lang="en">Contact Me</span><span lang="zh">與我聯繫</span>
+                </a>
+            </div>
         </div>
     </section>
 
-    <section id="projects" class="py-24 bg-slate-900/20 px-6">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-3xl font-bold mb-16 uppercase italic">
-                <span lang="en">Featured Projects</span><span lang="zh">重點工程專案</span>
-            </h2>
-
-            <div class="grid grid-cols-1 gap-12">
-                <div class="project-card rounded-2xl p-8 grid md:grid-cols-3 gap-8">
-                    <div class="md:col-span-1 bg-slate-800 rounded-xl flex flex-col items-center justify-center aspect-square text-slate-600">
-                        <i class="fas fa-arrows-alt-v text-6xl mb-4"></i>
-                        <p class="text-[10px] uppercase tracking-widest">Vertical Testing</p>
+    <section id="experience" class="py-24 bg-slate-900/30 px-6 border-y border-slate-800">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl font-bold mb-16 italic uppercase"><span lang="en">Work Experience</span><span lang="zh">工作經歷</span></h2>
+            
+            <div class="space-y-12">
+                <div class="relative pl-8 border-l border-slate-700">
+                    <div class="absolute -left-1.5 top-0 w-3 h-3 bg-cyan-500 rounded-full shadow-[0_0_10px_#22d3ee]"></div>
+                    <div class="flex flex-wrap justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-white uppercase">Mechanical Design Engineer</h3>
+                            <p class="text-cyan-400 font-mono text-sm">Ohmplus Technology Inc.</p>
+                        </div>
+                        <span class="text-slate-500 font-bold text-xs">2024 - PRESENT</span>
                     </div>
-                    <div class="md:col-span-2">
-                        <h3 class="text-2xl font-bold mb-4">
-                            <span lang="en">Vertical RF Testing System Development</span>
-                            <span lang="zh">垂直式射頻測試系統開發</span>
-                        </h3>
-                        <p class="text-slate-400 text-sm mb-6">
-                            <span lang="en">Led mechanical architecture for vertical test beds, achieving repeatable positioning for DUT evaluation via FEA analysis.</span>
-                            <span lang="zh">主導垂直測試台的機械架構設計，透過有限元素分析 (FEA) 確保待測物 (DUT) 評估具備高度重複定位精度。</span>
-                        </p>
-                        <div class="border-l-2 border-cyan-500 pl-4">
-                            <p class="text-xs text-slate-500 uppercase">Metrics</p>
-                            <p class="text-cyan-400 font-bold">Repeatability < 0.05mm | Angular Error < ±0.2°</p>
+                    <ul class="text-slate-400 text-sm space-y-3 list-disc pl-4">
+                        <li>Designed RF testing fixtures and precision motion mechanisms to improve stability.</li>
+                        <li>Developed manufacturable assemblies using SolidWorks, GD&T, and tolerance analysis.</li>
+                        <li>Resolved integration issues with RF and production teams, accelerating prototype readiness.</li>
+                    </ul>
+                </div>
+
+                <div class="relative pl-8 border-l border-slate-700">
+                    <div class="absolute -left-1.5 top-0 w-3 h-3 bg-slate-600 rounded-full"></div>
+                    <div class="flex flex-wrap justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-white uppercase">Product Manager</h3>
+                            <p class="text-slate-400 font-mono text-sm">Ohmplus Technology Inc.</p>
+                        </div>
+                        <span class="text-slate-500 font-bold text-xs">2021 - 2024</span>
+                    </div>
+                    <ul class="text-slate-400 text-sm space-y-3 list-disc pl-4">
+                        <li>Managed RF measurement equipment programs from concept to production.</li>
+                        <li>Coordinated engineering, manufacturing, and quality teams to meet schedules.</li>
+                        <li>Delivered multiple projects on time meeting quality and cost targets.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold mb-16 italic uppercase"><span lang="en">Featured Projects</span><span lang="zh">重點專案</span></h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="project-card rounded-2xl overflow-hidden flex flex-col">
+                    <div class="h-56 bg-slate-800 relative overflow-hidden">
+                        <img src="https://res.cloudinary.com/dv0jk958g/image/upload/v1772599026/Vertical_RF_Testing_System_Development_hvfik3.jpg" class="w-full h-full object-cover opacity-70 hover:opacity-100 transition duration-500">
+                    </div>
+                    <div class="p-8 flex flex-col flex-grow">
+                        <h3 class="text-lg font-bold mb-4 uppercase leading-tight">Vertical RF Testing System Development</h3>
+                        <div class="grid grid-cols-2 gap-2 mb-6">
+                            <div class="metric-tile"><p class="text-[9px] text-slate-500 uppercase">Changeover</p><p class="text-cyan-400 font-bold text-xs">< 2 min</p></div>
+                            <div class="metric-tile"><p class="text-[9px] text-slate-500 uppercase">Repeatability</p><p class="text-cyan-400 font-bold text-xs">±0.05mm</p></div>
+                        </div>
+                        <p class="text-slate-400 text-xs leading-relaxed mb-6">Built a vertical laboratory test infrastructure for antenna evaluation with repeatable measurements and operator safety.</p>
+                        <div class="mt-auto flex flex-wrap gap-2">
+                            <span class="skill-pill">FEA</span><span class="skill-pill">SolidWorks</span><span class="skill-pill">Laser Alignment</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="project-card rounded-2xl p-8 grid md:grid-cols-3 gap-8">
-                    <div class="md:col-span-1 bg-slate-800 rounded-xl flex flex-col items-center justify-center aspect-square text-slate-600">
-                        <i class="fas fa-shield-alt text-6xl mb-4"></i>
-                        <p class="text-[10px] uppercase tracking-widest">mmWave Shielding</p>
+                <div class="project-card rounded-2xl overflow-hidden flex flex-col">
+                    <div class="h-56 bg-slate-800 grid grid-cols-2 gap-0.5">
+                        <img src="https://res.cloudinary.com/dv0jk958g/image/upload/v1772599009/RF_Module_Design_-_Beamforming_krnzno.jpg" class="w-full h-full object-cover opacity-70">
+                        <img src="https://res.cloudinary.com/dv0jk958g/image/upload/v1772599016/RF_Module_Design_-_UpDown_Converter_jd7fhf.jpg" class="w-full h-full object-cover opacity-70">
                     </div>
-                    <div class="md:col-span-2">
-                        <h3 class="text-2xl font-bold mb-4">
-                            <span lang="en">Desktop High-Frequency RF Test Chamber</span>
-                            <span lang="zh">桌上型高頻射頻測試腔體</span>
-                        </h3>
-                        <p class="text-slate-400 text-sm mb-6">
-                            <span lang="en">Developed high-isolation portable shielding cabinets for mmWave measurements at National Defense University.</span>
-                            <span lang="zh">為國防大學開發用於毫米波 (mmWave) 量測的高隔離度便攜式屏蔽箱。</span>
-                        </p>
-                        <div class="border-l-2 border-indigo-500 pl-4">
-                            <p class="text-xs text-slate-500 uppercase">Performance</p>
-                            <p class="text-indigo-400 font-bold">Isolation ≥ 100 dB | Changeover < 90 sec</p>
+                    <div class="p-8 flex flex-col flex-grow">
+                        <h3 class="text-lg font-bold mb-4 uppercase leading-tight">RF Module Design – Beamforming & Up/Down</h3>
+                        <div class="grid grid-cols-2 gap-2 mb-6">
+                            <div class="metric-tile"><p class="text-[9px] text-slate-500 uppercase">EOL Pass</p><p class="text-blue-400 font-bold text-xs">100%</p></div>
+                            <div class="metric-tile"><p class="text-[9px] text-slate-500 uppercase">Design</p><p class="text-blue-400 font-bold text-xs">EMC Ready</p></div>
+                        </div>
+                        <p class="text-slate-400 text-xs leading-relaxed mb-6">Designed reusable RF modules balancing thermal performance, EMC compliance, and user-friendly interface.</p>
+                        <div class="mt-auto flex flex-wrap gap-2">
+                            <span class="skill-pill">CFD</span><span class="skill-pill">Thermal</span><span class="skill-pill">GD&T</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card rounded-2xl overflow-hidden flex flex-col">
+                    <div class="h-56 bg-slate-800 relative overflow-hidden">
+                        <img src="https://res.cloudinary.com/dv0jk958g/image/upload/v1772598989/Desktop_High-Frequency_RF_Test_Chamber_lvbdts.jpg" class="w-full h-full object-cover opacity-70 hover:opacity-100 transition duration-500">
+                    </div>
+                    <div class="p-8 flex flex-col flex-grow">
+                        <h3 class="text-lg font-bold mb-4 uppercase leading-tight">Desktop High-Frequency RF Test Chamber</h3>
+                        <div class="grid grid-cols-2 gap-2 mb-6">
+                            <div class="metric-tile"><p class="text-[9px] text-slate-500 uppercase">Frequency</p><p class="text-indigo-400 font-bold text-xs">1–67 GHz</p></div>
+                            <div class="metric-tile"><p class="text-[9px] text-slate-500 uppercase">Isolation</p><p class="text-indigo-400 font-bold text-xs">≥ 100 dB</p></div>
+                        </div>
+                        <p class="text-slate-400 text-xs leading-relaxed mb-6">Portable RF measurement enclosure with high isolation and geometric repeatability for National Defense University.</p>
+                        <div class="mt-auto flex flex-wrap gap-2">
+                            <span class="skill-pill">Shielding</span><span class="skill-pill">mmWave</span><span class="skill-pill">Portable</span>
                         </div>
                     </div>
                 </div>
@@ -95,15 +209,29 @@
         </div>
     </section>
 
-    <footer class="py-20 border-t border-slate-800 text-center text-slate-600 text-[10px] tracking-widest uppercase">
-        © 2026 Chung-Hsuan Huang. Professional Profile.
+    <footer id="contact" class="py-24 border-t border-slate-800 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-8 uppercase"><span lang="en">Get In Touch</span><span lang="zh">與我聯繫</span></h2>
+            <div class="flex flex-wrap justify-center gap-12 mb-16">
+                <div>
+                    <p class="text-slate-500 text-[10px] uppercase tracking-widest mb-2">Direct Email</p>
+                    <a href="mailto:jams923@hotmail.com" class="text-xl font-bold hover:text-cyan-400 transition">jams923@hotmail.com</a>
+                </div>
+                <div>
+                    <p class="text-slate-500 text-[10px] uppercase tracking-widest mb-2">Professional Network</p>
+                    <a href="https://www.linkedin.com/in/chung-hsuan-huang-856a69372/" target="_blank" class="text-xl font-bold hover:text-cyan-400 transition">LinkedIn Profile</a>
+                </div>
+            </div>
+            <p class="text-slate-600 text-[10px] tracking-[0.5em] uppercase italic">Precision | Integrity | Innovation</p>
+        </div>
     </footer>
 
     <script>
         function toggleLang() {
             const elements = document.querySelectorAll('[lang]');
             elements.forEach(el => {
-                el.style.display = (window.getComputedStyle(el).display === 'none') ? 'inline-block' : 'none';
+                const isHidden = window.getComputedStyle(el).display === 'none';
+                el.style.display = isHidden ? (el.tagName === 'SPAN' ? 'inline' : 'block') : 'none';
             });
         }
     </script>
