@@ -1,294 +1,242 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>James Huang | Professional Portfolio</title>
-  <style>
-    :root {
-      --primary: #0f172a;
-      --secondary: #334155;
-      --accent: #64748b;
-      --bg: #f8fafc;
-      --card-bg: #ffffff;
-      --border: #e2e8f0;
-      --text-main: #1e293b;
-      --text-muted: #64748b;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>James Huang | Portfolio</title>
+    <style>
+        :root {
+            /* 深色系色調設定 */
+            --bg-color: #09090b;
+            --card-bg: #18181b;
+            --card-border: #27272a;
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --accent-color: #3f3f46;
+            --btn-bg: #ffffff;
+            --btn-text: #09090b;
+            --nav-bg: rgba(24, 24, 27, 0.8);
+        }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: var(--bg);
-      color: var(--text-main);
-      line-height: 1.6;
-    }
-    a { color: inherit; text-decoration: none; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
 
-    .container { max-width: 1100px; margin: 0 auto; padding: 24px 20px; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
 
-    /* Header & Navigation */
-    .header {
-      position: sticky; top: 16px; z-index: 100;
-      display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 32px; padding: 12px 24px;
-      background: rgba(255, 255, 255, 0.8);
-      border: 1px solid var(--border);
-      border-radius: 16px; backdrop-filter: blur(12px);
-      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-    }
-    .nav-group { display: flex; align-items: center; gap: 24px; }
-    .nav { display: flex; gap: 20px; font-size: 14px; font-weight: 600; color: var(--secondary); }
-    .lang-select {
-      padding: 6px 12px; border-radius: 8px; border: 1px solid var(--border);
-      background: #fff; font-size: 13px; cursor: pointer;
-    }
+        /* 導覽列與語系切換 */
+        header {
+            position: sticky; top: 20px; z-index: 100;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 12px 24px; margin-bottom: 40px;
+            background: var(--nav-bg); border: 1px solid var(--card-border);
+            border-radius: 16px; backdrop-filter: blur(12px);
+        }
+        .nav-links { display: flex; gap: 20px; font-size: 14px; font-weight: 600; }
+        .nav-links a:hover { color: var(--text-secondary); }
+        .lang-select {
+            background: transparent; color: var(--text-primary);
+            border: 1px solid var(--card-border); padding: 4px 8px;
+            border-radius: 8px; font-size: 12px; cursor: pointer;
+        }
 
-    /* Language Toggle Logic */
-    .lang-zh .en-only, .lang-en .zh-only { display: none !important; }
+        /* 語系控制 Class */
+        .lang-en { display: none; }
+        body.en-mode .lang-zh { display: none; }
+        body.en-mode .lang-en { display: block; }
+        body.en-mode .inline-lang-en { display: inline; }
+        body.en-mode .inline-lang-zh { display: none; }
 
-    /* Sections */
-    .section {
-      background: var(--card-bg); border: 1px solid var(--border);
-      border-radius: 24px; padding: 48px; margin-bottom: 32px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
-    }
-    h1 { font-size: 42px; margin: 0 0 16px 0; color: var(--primary); letter-spacing: -0.02em; }
-    h2 { font-size: 28px; margin: 0 0 32px 0; border-bottom: 2px solid var(--bg); padding-bottom: 12px; color: var(--primary); }
-    h3 { font-size: 22px; margin: 0; color: var(--primary); }
+        /* 通用卡片樣式 */
+        section {
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: 24px; padding: 40px; margin-bottom: 24px;
+        }
 
-    .badge {
-      display: inline-block; padding: 4px 12px; border-radius: 20px;
-      background: var(--primary); color: #fff; font-size: 11px;
-      font-weight: 700; text-transform: uppercase; margin-bottom: 16px;
-    }
+        .badge {
+            display: inline-block; padding: 4px 12px; border-radius: 20px;
+            background: var(--accent-color); color: var(--text-primary);
+            font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 16px;
+        }
 
-    /* Technical Skill Set */
-    .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 8px; }
-    .skill-card { background: #fcfcfc; border: 1px solid var(--border); padding: 24px; border-radius: 16px; }
-    .skill-title { font-size: 13px; font-weight: 800; color: var(--accent); text-transform: uppercase; margin-bottom: 16px; letter-spacing: 0.05em; }
-    .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-    .tag { background: #fff; border: 1px solid var(--border); padding: 6px 14px; border-radius: 8px; font-size: 13px; font-weight: 600; color: var(--secondary); }
+        h1 { font-size: 48px; margin-bottom: 16px; letter-spacing: -0.02em; }
+        h2 { font-size: 24px; margin-bottom: 24px; }
 
-    /* Experience */
-    .job { margin-bottom: 48px; position: relative; padding-left: 24px; border-left: 2px solid var(--border); }
-    .job:last-child { margin-bottom: 0; }
-    .job-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
-    .company { font-size: 18px; color: var(--accent); font-weight: 600; margin-top: 4px; }
-    .date { font-size: 14px; font-weight: 700; color: var(--accent); }
-    .job-list { margin: 16px 0 0; padding: 0; list-style: none; }
-    .job-list li { margin-bottom: 12px; color: var(--secondary); position: relative; padding-left: 20px; font-size: 15px; }
-    .job-list li::before { content: "→"; position: absolute; left: 0; color: var(--primary); font-weight: bold; }
+        /* 技術專長 */
+        .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .skill-category { background: #202023; padding: 20px; border-radius: 16px; border: 1px solid var(--card-border); }
+        .skill-title { font-size: 12px; font-weight: 800; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 12px; }
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+        .tag { background: var(--card-border); padding: 4px 12px; border-radius: 6px; font-size: 13px; }
 
-    /* Projects */
-    .project-card {
-      display: grid; grid-template-columns: 340px 1fr; gap: 40px;
-      padding: 32px; border: 1px solid var(--border); border-radius: 24px; margin-bottom: 32px;
-    }
-    .project-visual { border-radius: 16px; overflow: hidden; height: 240px; background: #eee; border: 1px solid var(--border); }
-    .project-visual img { width: 100%; height: 100%; object-fit: cover; }
-    
-    .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
-    .m-box { background: var(--bg); padding: 12px; border-radius: 12px; text-align: center; border: 1px solid var(--border); }
-    .m-val { display: block; font-size: 16px; font-weight: 800; color: var(--primary); }
-    .m-lab { font-size: 9px; color: var(--accent); font-weight: 700; text-transform: uppercase; }
+        /* 工作經歷 */
+        .job { margin-bottom: 32px; padding-left: 20px; border-left: 2px solid var(--card-border); }
+        .job-title { font-size: 18px; font-weight: 700; }
+        .job-company { color: var(--text-secondary); font-size: 14px; margin-bottom: 8px; }
+        .job-list { list-style: none; font-size: 14px; color: var(--text-secondary); }
+        .job-list li { margin-bottom: 6px; position: relative; padding-left: 15px; }
+        .job-list li::before { content: "•"; position: absolute; left: 0; color: var(--text-primary); }
 
-    .project-info h4 { font-size: 12px; font-weight: 800; color: var(--accent); text-transform: uppercase; margin: 24px 0 8px 0; border-top: 1px solid var(--bg); padding-top: 16px; }
-    .project-desc { font-size: 14px; color: var(--secondary); margin: 0; }
+        /* 專案展示 */
+        .project-card {
+            display: grid; grid-template-columns: 300px 1fr; gap: 30px;
+            border: 1px solid var(--card-border); border-radius: 20px; padding: 24px; margin-bottom: 20px;
+        }
+        .project-img { width: 100%; height: 200px; background: #27272a; border-radius: 12px; object-fit: cover; }
+        .m-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 12px; }
+        .m-box { background: var(--bg-color); padding: 8px; border-radius: 8px; text-align: center; font-size: 12px; }
+        .m-val { display: block; font-weight: 700; }
 
-    /* Contact */
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-    .contact-card {
-      padding: 32px; border-radius: 20px; border: 1px solid var(--border); background: #fcfcfc;
-      transition: all 0.2s;
-    }
-    .contact-card:hover { border-color: var(--primary); background: #fff; transform: translateY(-2px); }
-    .c-label { font-size: 12px; font-weight: 800; color: var(--accent); text-transform: uppercase; margin-bottom: 8px; display: block; }
-    .c-value { font-size: 20px; font-weight: 700; color: var(--primary); display: block; margin-bottom: 20px; }
-    .c-btn {
-      display: inline-block; padding: 12px 24px; background: var(--primary); color: #fff;
-      border-radius: 12px; font-size: 14px; font-weight: 700;
-    }
+        /* 聯絡資訊 */
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .contact-box { padding: 24px; border: 1px solid var(--card-border); border-radius: 20px; }
+        .btn {
+            display: inline-block; margin-top: 16px; padding: 10px 20px;
+            background: var(--btn-bg); color: var(--btn-text);
+            border-radius: 12px; font-size: 14px; font-weight: 700; text-decoration: none;
+        }
 
-    @media (max-width: 1024px) {
-      .project-card, .skills-grid, .contact-grid { grid-template-columns: 1fr; }
-      .header { flex-direction: column; gap: 16px; }
-    }
-  </style>
+        @media (max-width: 768px) {
+            .project-card, .skills-grid, .contact-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 32px; }
+        }
+    </style>
 </head>
-<body class="lang-zh">
-  <div class="container">
-    <header class="header">
-      <div style="font-weight:900; font-size:20px; letter-spacing:-0.03em;">JAMES HUANG</div>
-      <div class="nav-group">
-        <nav class="nav">
-          <a href="#experience"><span class="zh-only">工作經歷</span><span class="en-only">Experience</span></a>
-          <a href="#skills"><span class="zh-only">技術能力</span><span class="en-only">Skills</span></a>
-          <a href="#projects"><span class="zh-only">工程專案</span><span class="en-only">Projects</span></a>
-        </nav>
-        <select class="lang-select" onchange="switchLang(this.value)">
-          <option value="zh">繁體中文</option>
-          <option value="en">English</option>
-        </select>
-      </div>
-    </header>
+<body>
+    <div class="container">
+        <header>
+            <div style="font-weight: 800; letter-spacing: -0.5px;">JAMES HUANG</div>
+            <div class="nav-links">
+                <a href="#experience"><span class="inline-lang-zh">經歷</span><span class="inline-lang-en">Experience</span></a>
+                <a href="#skills"><span class="inline-lang-zh">技能</span><span class="inline-lang-en">Skills</span></a>
+                <a href="#projects"><span class="inline-lang-zh">專案</span><span class="inline-lang-en">Projects</span></a>
+                <select class="lang-select" onchange="toggleLanguage(this.value)">
+                    <option value="zh">繁體中文</option>
+                    <option value="en">English</option>
+                </select>
+            </div>
+        </header>
 
-    <section class="section">
-      <div class="badge"><span class="zh-only">機構設計工程師</span><span class="en-only">Mechanical Design Engineer</span></div>
-      <h1>
-        <span class="zh-only">黃仲瑄 | 精密機構與 RF 測試治具</span>
-        <span class="en-only">James Huang | Precision & RF Fixture Design</span>
-      </h1>
-      <p style="font-size: 18px; color: var(--secondary); max-width: 800px;">
-        <span class="zh-only">專精於高頻測試環境建置、自動化定位治具及熱管理設計。具備從需求定義、SolidWorks 高精度建模、GD&T 公差分析到量產驗證的全流程開發能力，致力於優化量測數據的穩定度與可重複性。</span>
-        <span class="en-only">Specializing in high-frequency test environments, automated positioning fixtures, and thermal management. Full-cycle development expertise from SolidWorks modeling and GD&T analysis to mass production validation.</span>
-      </p>
-    </section>
+        <section id="hero">
+            <div class="badge">Mechanical Engineer</div>
+            <h1>
+                <span class="lang-zh">黃仲瑄 | 精密機構與 RF 測試治具</span>
+                <span class="lang-en">James Huang | Precision & RF Design</span>
+            </h1>
+            <p style="color: var(--text-secondary); max-width: 700px;">
+                <span class="lang-zh">具備高頻測試系統開發經驗，擅長應用 SolidWorks 進行精密建模與 GD&T 公差分析，優化機構剛性與熱管理效能。</span>
+                <span class="lang-en">Experienced in RF test system development, specializing in SolidWorks modeling, GD&T analysis, and thermal management optimization.</span>
+            </p>
+        </section>
 
-    <section id="skills" class="section">
-      <h2><span class="zh-only">技術專長</span><span class="en-only">Technical Skill Set</span></h2>
-      <div class="skills-grid">
-        <div class="skill-card">
-          <div class="skill-title"><span class="zh-only">設計與分析</span><span class="en-only">Design & Analysis</span></div>
-          <div class="skill-tags">
-            <span class="tag">SolidWorks 3D</span><span class="tag">AutoCAD</span>
-            <span class="tag">FEA 結構模擬</span><span class="tag">CFD 熱流分析</span>
-            <span class="tag">GD&T 幾何公差</span><span class="tag">Tolerance Stack-up</span>
-          </div>
-        </div>
-        <div class="skill-card">
-          <div class="skill-title"><span class="zh-only">製造與品質</span><span class="en-only">Manufacturing & QA</span></div>
-          <div class="skill-tags">
-            <span class="tag">DFM / DFA</span><span class="tag">BOM / ECN 管理</span>
-            <span class="tag">FARO Arm 量測</span><span class="tag">FMEA 失效分析</span>
-            <span class="tag">Laser Alignment</span><span class="tag">SOP 技術文件</span>
-          </div>
-        </div>
-      </div>
-    </section>
+        <section id="skills">
+            <h2 class="lang-zh">技術專長</h2><h2 class="lang-en">Technical Skill Set</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <div class="skill-title">Design & Analysis</div>
+                    <div class="tags">
+                        <span class="tag">SolidWorks</span><span class="tag">FEA</span><span class="tag">CFD</span>
+                        <span class="tag">GD&T</span><span class="tag">Tolerance Stack-up</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-title">Process & Quality</div>
+                    <div class="tags">
+                        <span class="tag">DFM/DFA</span><span class="tag">FARO Arm</span><span class="tag">FMEA</span>
+                        <span class="tag">ECN Mgmt</span><span class="tag">Laser Alignment</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <section id="experience" class="section">
-      <h2><span class="zh-only">工作經歷</span><span class="en-only">Work Experience</span></h2>
-      
-      <div class="job">
-        <div class="job-header">
-          <div>
-            <h3><span class="zh-only">機構設計工程師</span><span class="en-only">Mechanical Design Engineer</span></h3>
-            <div class="company">歐姆佳科技 (Ohmplus Technology Inc.)</div>
-          </div>
-          <div class="date">2024.06 – Present</div>
-        </div>
-        <ul class="job-list">
-          <li class="zh-only"><b>RF 測試系統研發：</b>主導 1-67GHz 高頻測試治具開發。應用 GD&T 規劃基準鏈，確保量測基線誤差控制在 ±1mm 以內。</li>
-          <li class="zh-only"><b>精密製造管理：</b>執行公差堆疊分析（Tolerance Stack-up）確保零件互換性，並與供應商進行 DFM/DFA 評審。</li>
-          <li class="zh-only"><b>驗證與品質：</b>使用 FARO Arm 與雷射校準建立組裝 SOP，應用 FMEA 評估設計風險並降低洩漏機率。</li>
-          <li class="en-only"><b>RF System R&D:</b> Led 1-67GHz fixture development. Applied GD&T for datum chains to keep baseline errors < ±1mm.</li>
-          <li class="en-only"><b>Manufacturing Mgmt:</b> Conducted Tolerance Stack-up for interchangeability; performed DFM/DFA with suppliers.</li>
-          <li class="en-only"><b>Validation:</b> Established SOPs using FARO Arm and Laser Alignment; applied FMEA to mitigate design risks.</li>
-        </ul>
-      </div>
+        <section id="experience">
+            <h2 class="lang-zh">工作經歷</h2><h2 class="lang-en">Experience</h2>
+            <div class="job">
+                <div class="job-title">
+                    <span class="lang-zh">機構設計工程師</span><span class="lang-en">Mechanical Design Engineer</span>
+                </div>
+                <div class="job-company">Ohmplus Technology | 2024.06 – Present</div>
+                <ul class="job-list lang-zh">
+                    <li>主導 1-67GHz 高頻測試治具開發，應用 GD&T 確保精度。</li>
+                    <li>執行公差堆疊分析與 DFM/DFA 供應商審查。</li>
+                </ul>
+                <ul class="job-list lang-en">
+                    <li>Led 1-67GHz RF fixture development using GD&T for precision.</li>
+                    <li>Performed tolerance stack-up and DFM/DFA supplier reviews.</li>
+                </ul>
+            </div>
+        </section>
 
-      <div class="job">
-        <div class="job-header">
-          <div>
-            <h3><span class="zh-only">產品經理</span><span class="en-only">Product Manager</span></h3>
-            <div class="company">歐姆佳科技 (Ohmplus Technology Inc.)</div>
-          </div>
-          <div class="date">2021.06 – 2024.06</div>
-        </div>
-        <ul class="job-list">
-          <li class="zh-only"><b>全生命週期管理：</b>負責 RF 量測設備從概念規格定義、研發進度追蹤到量產交付的全流程。</li>
-          <li class="zh-only"><b>跨部門協調：</b>整合研發、採購與生產端需求，透過工程變更（ECN）管理確保專案如期交付。</li>
-          <li class="en-only"><b>Lifecycle Mgmt:</b> Managed RF equipment from spec definition to mass production delivery.</li>
-          <li class="en-only"><b>Coordination:</b> Integrated R&D and production needs via ECN management to ensure on-time delivery.</li>
-        </ul>
-      </div>
-    </section>
+        <section id="projects">
+            <h2 class="lang-zh">精選專案</h2><h2 class="lang-en">Featured Projects</h2>
+            
+            <div class="project-card">
+                <div>
+                    <img src="https://res.cloudinary.com/dv0jk958g/image/upload/v1772599026/Vertical_RF_Testing_System_Development_hvfik3.jpg" class="project-img">
+                    <div class="m-row">
+                        <div class="m-box"><span class="m-val">±1mm</span>Acc.</div>
+                        <div class="m-box"><span class="m-val">2min</span>Cycle</div>
+                        <div class="m-box"><span class="m-val">FEA</span>Anal.</div>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="margin-bottom:12px;">
+                        <span class="lang-zh">垂直式 RF 測試系統</span><span class="lang-en">Vertical RF Testing System</span>
+                    </h3>
+                    <p class="lang-zh" style="font-size:14px; color:var(--text-secondary);">解決垂直空間內天線與 DUT 的精度對準問題，開發自動化升降平台與安全鎖定機構。</p>
+                    <p class="lang-en" style="font-size:14px; color:var(--text-secondary);">Solved alignment issues for RF antennas in confined spaces; developed automated lift and safety locks.</p>
+                </div>
+            </div>
 
-    <section id="projects" class="section">
-      <h2><span class="zh-only">精選專案</span><span class="en-only">Featured Projects</span></h2>
+            <div class="project-card">
+                <div>
+                    <img src="https://res.cloudinary.com/dv0jk958g/image/upload/v1772599009/RF_Module_Design_-_Beamforming_krnzno.jpg" class="project-img">
+                    <div class="m-row">
+                        <div class="m-box"><span class="m-val">CFD</span>Therm.</div>
+                        <div class="m-box"><span class="m-val">EMC</span>Shield.</div>
+                        <div class="m-box"><span class="m-val">Al6061</span>Mat.</div>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="margin-bottom:12px;">
+                        <span class="lang-zh">波束成型 RF 模組機箱</span><span class="lang-en">Beamforming RF Module Housing</span>
+                    </h3>
+                    <p class="lang-zh" style="font-size:14px; color:var(--text-secondary);">設計具備優異熱管理與 EMC 屏蔽性能的機殼，並通過 CFD 模擬驗證散熱效率。</p>
+                    <p class="lang-en" style="font-size:14px; color:var(--text-secondary);">Designed enclosures with advanced thermal and EMC performance, verified by CFD simulations.</p>
+                </div>
+            </div>
+        </section>
 
-      <div class="project-card">
-        <div>
-          <div class="project-visual"><img src="https://res.cloudinary.com/dv0jk958g/image/upload/v1772599026/Vertical_RF_Testing_System_Development_hvfik3.jpg" alt="Project 1"></div>
-          <div class="metrics">
-            <div class="m-box"><span class="m-val">±1mm</span><span class="m-lab">Accuracy</span></div>
-            <div class="m-box"><span class="m-val">2 min</span><span class="m-lab">Loading</span></div>
-            <div class="m-box"><span class="m-val">FEA</span><span class="m-lab">Optimized</span></div>
-          </div>
-        </div>
-        <div class="project-info">
-          <h3><span class="zh-only">垂直式 RF 測試量測系統開發</span><span class="en-only">Vertical RF Testing System Development</span></h3>
-          <h4><span class="zh-only">技術核心</span><span class="en-only">Technical Core</span></h4>
-          <p class="project-desc">
-            <span class="zh-only">解決受限空間內天線反射面與待測物（DUT）的幾何對準問題。應用 FEA 分析結構撓度，並開發具備自動化升降與定位銷的平台，顯著縮短測試換料時間。</span>
-            <span class="en-only">Solved alignment issues between reflector and DUT in confined spaces. Used FEA for structural analysis and developed an automated platform with positioning pins to reduce loading time.</span>
-          </p>
-        </div>
-      </div>
+        <section id="contact">
+            <h2 class="lang-zh">聯絡資訊</h2><h2 class="lang-en">Contact</h2>
+            <div class="contact-grid">
+                <div class="contact-box">
+                    <div style="font-size:12px; color:var(--text-secondary);">EMAIL</div>
+                    <div style="font-weight:700;">jams923@hotmail.com</div>
+                    <a href="mailto:jams923@hotmail.com" class="btn">Send Email</a>
+                </div>
+                <div class="contact-box">
+                    <div style="font-size:12px; color:var(--text-secondary);">LINKEDIN</div>
+                    <div style="font-weight:700;">James Huang</div>
+                    <a href="https://www.linkedin.com/in/chung-hsuan-huang-856a69372/" target="_blank" class="btn">View Profile</a>
+                </div>
+            </div>
+        </section>
+    </div>
 
-      <div class="project-card">
-        <div>
-          <div class="project-visual"><img src="https://res.cloudinary.com/dv0jk958g/image/upload/v1772599009/RF_Module_Design_-_Beamforming_krnzno.jpg" alt="Project 2"></div>
-          <div class="metrics">
-            <div class="m-box"><span class="m-val">CFD</span><span class="m-lab">Thermal</span></div>
-            <div class="m-box"><span class="m-val">EMC</span><span class="m-lab">Shielding</span></div>
-            <div class="m-box"><span class="m-val">100%</span><span class="m-lab">Yield</span></div>
-          </div>
-        </div>
-        <div class="project-info">
-          <h3><span class="zh-only">波束成型與上下變頻 RF 模組開發</span><span class="en-only">Beamforming & Frequency Converter RF Module</span></h3>
-          <h4><span class="zh-only">技術核心</span><span class="en-only">Technical Core</span></h4>
-          <p class="project-desc">
-            <span class="zh-only">開發高功率子板的機箱環境。執行 CFD 熱流模擬優化散熱路徑，並設計具備導電襯墊凹槽的鋁合金機殼，達成嚴苛的電磁屏蔽（EMC）需求。</span>
-            <span class="en-only">Developed housing for high-power RF sub-boards. Performed CFD thermal simulations to optimize cooling paths and designed aluminum enclosures with conductive gasket grooves for EMC.</span>
-          </p>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div>
-          <div class="project-visual"><img src="https://res.cloudinary.com/dv0jk958g/image/upload/v1772598989/Desktop_High-Frequency_RF_Test_Chamber_lvbdts.jpg" alt="Project 3"></div>
-          <div class="metrics">
-            <div class="m-box"><span class="m-val">100dB</span><span class="m-lab">Isolation</span></div>
-            <div class="m-box"><span class="m-val">67GHz</span><span class="m-lab">Support</span></div>
-            <div class="m-box"><span class="m-val">FMEA</span><span class="m-lab">Risk Mgmt</span></div>
-          </div>
-        </div>
-        <div class="project-info">
-          <h3><span class="zh-only">高頻桌上型屏蔽量測箱開發</span><span class="en-only">High-Frequency Shielded Test Chamber</span></h3>
-          <h4><span class="zh-only">技術核心</span><span class="en-only">Technical Core</span></h4>
-          <p class="project-desc">
-            <span class="zh-only">為國防大學開發的高性能屏蔽環境。採用 Knife-edge 導電密封與微調定位機構，確保在 67GHz 超高頻環境下的訊號隔離度與天線指向重複性。</span>
-            <span class="en-only">Developed for NDU. Used Knife-edge conductive seals and micro-adjustment mechanisms to ensure signal isolation and antenna pointing repeatability at 67GHz.</span>
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="section">
-      <h2><span class="zh-only">聯絡我</span><span class="en-only">Contact</span></h2>
-      <div class="contact-grid">
-        <div class="contact-card">
-          <span class="c-label">Email</span>
-          <span class="c-value">jams923@hotmail.com</span>
-          <a href="mailto:jams923@hotmail.com" class="c-btn"><span class="zh-only">發送信件</span><span class="en-only">Send Email</span></a>
-        </div>
-        <div class="contact-card">
-          <span class="c-label">LinkedIn</span>
-          <span class="c-value">James Huang</span>
-          <a href="https://www.linkedin.com/in/chung-hsuan-huang-856a69372/" target="_blank" class="c-btn"><span class="zh-only">查看 Profile</span><span class="en-only">View Profile</span></a>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <script>
-    function switchLang(lang) {
-      document.body.className = 'lang-' + lang;
-    }
-  </script>
+    <script>
+        function toggleLanguage(lang) {
+            if (lang === 'en') {
+                document.body.classList.add('en-mode');
+            } else {
+                document.body.classList.remove('en-mode');
+            }
+        }
+    </script>
 </body>
 </html>
