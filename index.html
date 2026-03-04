@@ -1,239 +1,424 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>James Huang | Mechanical & RF Design Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Noto+Sans+TC:wght@400;700&display=swap');
-        
-        :root {
-            --primary-cyan: #22d3ee;
-            --primary-blue: #3b82f6;
-            --dark-bg: #020617;
-            --card-bg: rgba(30, 41, 59, 0.5);
-        }
-
-        body { 
-            font-family: 'Inter', 'Noto Sans TC', sans-serif; 
-            background-color: var(--dark-bg); 
-            color: #f8fafc; 
-            scroll-behavior: smooth; 
-        }
-
-        .glass-header {
-            background: rgba(2, 6, 23, 0.8);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .gradient-text {
-            background: linear-gradient(135deg, var(--primary-cyan) 0%, var(--primary-blue) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .project-card {
-            background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .project-card:hover {
-            border-color: var(--primary-cyan);
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-        }
-
-        .metric-tile {
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 1rem;
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .skill-pill {
-            background: rgba(34, 211, 238, 0.1);
-            color: var(--primary-cyan);
-            border: 1px solid rgba(34, 211, 238, 0.2);
-            padding: 4px 12px;
-            border-radius: 999px;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-
-        [lang="zh"] { display: none; }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>黃仲瑄 James Huang | 機構設計作品集</title>
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: #f1f5f9;
+      color: #0f172a;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 24px 16px; }
+    .header {
+      position: sticky; top: 16px; z-index: 20;
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 24px; padding: 14px 20px;
+      background: rgba(255,255,255,.9); border: 1px solid rgba(255,255,255,.7);
+      border-radius: 18px; backdrop-filter: blur(8px); box-shadow: 0 1px 3px rgba(0,0,0,.08);
+    }
+    .nav { display: flex; gap: 20px; font-size: 14px; color: #475569; }
+    .nav a:hover { color: #0f172a; }
+    .section {
+      background: #fff; border: 1px solid #e2e8f0; border-radius: 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,.06); padding: 24px; margin-bottom: 24px;
+    }
+    .hero {
+      display: grid; grid-template-columns: 1.35fr .65fr; gap: 32px; padding: 32px;
+    }
+    .badge {
+      display: inline-flex; padding: 6px 12px; border-radius: 999px;
+      border: 1px solid #e2e8f0; background: #f8fafc; color: #475569;
+      font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .18em;
+    }
+    h1 { margin: 12px 0 0; font-size: 48px; line-height: 1.1; }
+    .subtitle { margin-top: 16px; font-size: 20px; font-weight: 700; color: #334155; }
+    .bodycopy { margin-top: 16px; font-size: 16px; line-height: 1.9; color: #475569; }
+    .btnrow { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn {
+      display: inline-block; padding: 14px 20px; border-radius: 18px;
+      font-size: 14px; font-weight: 700; box-shadow: 0 1px 3px rgba(0,0,0,.08);
+      cursor: pointer;
+    }
+    .btn-dark { background: #0f172a; color: #fff; }
+    .btn-light { background: #fff; color: #334155; border: 1px solid #cbd5e1; }
+    .sidebarbox {
+      display: grid; gap: 16px; padding: 20px; border-radius: 24px;
+      border: 1px solid #e2e8f0; background: #f8fafc;
+    }
+    .card {
+      background: #fff; border-radius: 18px; padding: 16px; box-shadow: 0 1px 3px rgba(0,0,0,.06);
+    }
+    .card.dark {
+      background: linear-gradient(135deg,#0f172a,#334155); color: #fff;
+    }
+    .card-title {
+      font-size: 12px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .16em; color: #64748b; margin-bottom: 10px;
+    }
+    .card.dark .card-title { color: #cbd5e1; }
+    .pills { display: flex; flex-wrap: wrap; gap: 8px; }
+    .pill {
+      display: inline-flex; padding: 6px 12px; border-radius: 999px;
+      border: 1px solid #cbd5e1; background: #fff; color: #334155;
+      font-size: 12px; font-weight: 600;
+    }
+    .section-eyebrow {
+      margin-bottom: 8px; font-size: 12px; font-weight: 700; color: #64748b;
+      text-transform: uppercase; letter-spacing: .22em;
+    }
+    .section h2 { margin: 0; font-size: 32px; }
+    .section-sub { margin-top: 12px; max-width: 900px; font-size: 16px; line-height: 1.9; color: #475569; }
+    .stack { display: grid; gap: 16px; }
+    .job {
+      border: 1px solid #e2e8f0; border-radius: 18px; padding: 20px;
+    }
+    .job-top { display: flex; justify-content: space-between; gap: 16px; }
+    .job h3 { margin: 0; font-size: 20px; }
+    .muted { color: #64748b; }
+    ul.clean { margin: 16px 0 0; padding: 0; list-style: none; }
+    ul.clean li {
+      display: flex; gap: 10px; margin: 8px 0; line-height: 1.8; color: #334155;
+    }
+    .dot {
+      margin-top: 10px; width: 6px; height: 6px; border-radius: 50%;
+      background: #94a3b8; flex: 0 0 auto;
+    }
+    .grid-4 { display: grid; gap: 16px; grid-template-columns: repeat(4,1fr); }
+    .skill-box {
+      border: 1px solid #e2e8f0; background: #f8fafc; border-radius: 18px; padding: 20px;
+    }
+    .projects {
+      display: grid; gap: 20px; align-items: stretch; grid-template-columns: repeat(3,1fr);
+    }
+    .project {
+      display: flex; flex-direction: column;
+      border: 1px solid #e2e8f0; background: #f8fafc; border-radius: 18px; padding: 20px;
+    }
+    .project-visual {
+      margin-bottom: 16px; overflow: hidden; border-radius: 18px; border: 1px solid #e2e8f0; background: #e2e8f0;
+    }
+    .project-visual.single { height: 220px; }
+    .project-visual.single img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .project-visual.double {
+      display: grid; grid-template-rows: 1fr 1fr; gap: 1px; height: 220px; background: #fff;
+    }
+    .project-visual.double img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 20px; }
+    .metric {
+      height: 80px; border: 1px solid #e2e8f0; border-radius: 18px; background: #fff;
+      display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+      padding: 8px; box-shadow: 0 1px 2px rgba(0,0,0,.04);
+    }
+    .metric-label {
+      font-size: 9px; font-weight: 700; line-height: 1; letter-spacing: .04em;
+      text-transform: uppercase; color: #64748b; white-space: nowrap;
+    }
+    .metric-value {
+      margin-top: 10px; font-size: 13px; font-weight: 700; line-height: 1;
+      letter-spacing: -.02em; color: #0f172a; white-space: nowrap;
+    }
+    .project h3 { margin: 0; font-size: 18px; line-height: 1.35; }
+    .min-title { min-height: 60px; }
+    .tagrow { margin-top: auto; padding-top: 20px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .two-col { display: grid; gap: 20px; grid-template-columns: .7fr 1.3fr; }
+    .contact {
+      background: #0f172a; color: #fff;
+    }
+    .contact .section-eyebrow { color: #cbd5e1; }
+    .contact .section-sub { color: #cbd5e1; }
+    .contact-boxes { display: grid; gap: 16px; grid-template-columns: repeat(2,1fr); }
+    .contact-card {
+      border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.05);
+      border-radius: 18px; padding: 20px;
+    }
+    .contact-label {
+      font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .18em; color: #cbd5e1;
+    }
+    .contact-link {
+      display: block; margin-top: 12px; color: #f8fafc; text-decoration: underline; text-underline-offset: 4px;
+      word-break: break-word;
+    }
+    .contact-actions { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 12px; }
+    @media (max-width: 1024px) {
+      .hero, .projects, .grid-4, .two-col { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .header { display: none; }
+      h1 { font-size: 36px; }
+      .hero { padding: 20px; }
+      .contact-boxes { grid-template-columns: 1fr; }
+      .job-top { flex-direction: column; }
+    }
+  </style>
 </head>
-<body class="selection:bg-cyan-500/30">
-
-    <header class="glass-header fixed w-full z-50 px-6 py-4">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="text-xl font-bold tracking-tighter gradient-text">JAMES HUANG</div>
-            <nav class="hidden md:flex space-x-8 text-[11px] font-bold tracking-[0.2em] uppercase text-slate-400">
-                <a href="#about" class="hover:text-cyan-400 transition">About</a>
-                <a href="#experience" class="hover:text-cyan-400 transition">Experience</a>
-                <a href="#projects" class="hover:text-cyan-400 transition">Projects</a>
-                <a href="#contact" class="hover:text-cyan-400 transition">Contact</a>
-            </nav>
-            <button onclick="toggleLang()" class="px-4 py-1.5 border border-slate-700 rounded-full text-xs font-bold hover:bg-slate-800 transition">
-                <span lang="en">繁中</span><span lang="zh">EN</span>
-            </button>
-        </div>
+<body>
+  <div class="container">
+    <header class="header">
+      <div style="font-size:14px;font-weight:700;">James Huang</div>
+      <nav class="nav">
+        <a href="#about">關於我</a>
+        <a href="#experience">工作經歷</a>
+        <a href="#skills">專業技能</a>
+        <a href="#projects">精選專案</a>
+        <a href="#contact">聯絡資訊</a>
+      </nav>
     </header>
 
-    <section id="about" class="pt-40 pb-20 px-6">
-        <div class="max-w-4xl mx-auto">
-            <div class="inline-block px-3 py-1 bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-[10px] font-bold tracking-widest rounded mb-6 uppercase">
-                <span lang="en">Mechanical Design Engineer</span><span lang="zh">機械設計工程師</span>
-            </div>
-            <h1 class="text-5xl md:text-7xl font-bold mb-8 leading-tight">
-                <span lang="en">Engineering Precision for <br><span class="gradient-text">RF Systems</span></span>
-                <span lang="zh">為<span class="gradient-text">射頻系統</span>打造<br>極致精密的工程方案</span>
-            </h1>
-            <p class="text-slate-400 text-lg leading-relaxed mb-10 max-w-2xl">
-                <span lang="en">Specialized in RF test systems, precision fixtures, thermal management, and manufacturable mechanical design. Building stable, repeatable infrastructure for antenna and wireless module evaluation.</span>
-                <span lang="zh">專精於射頻測試系統、精密治具、熱傳管理及具備可製造性的機械設計。為天線與無線模組量測打造穩定且具備高重複性的基礎設施。</span>
-            </p>
-            <div class="flex flex-wrap gap-4">
-                <a href="#projects" class="px-8 py-3 bg-cyan-600 hover:bg-cyan-500 text-white font-bold rounded-lg transition shadow-lg shadow-cyan-900/20">
-                    <span lang="en">View Projects</span><span lang="zh">查看專案成果</span>
-                </a>
-                <a href="mailto:jams923@hotmail.com" class="px-8 py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-lg transition border border-slate-700">
-                    <span lang="en">Contact Me</span><span lang="zh">與我聯繫</span>
-                </a>
-            </div>
+    <section class="section hero">
+      <div>
+        <div class="badge">Mechanical Portfolio</div>
+        <h1>黃仲瑄 / James Huang</h1>
+        <div class="subtitle">機構設計工程師 | RF 測試治具 | 精密機構 | 熱流設計</div>
+        <div class="bodycopy">
+          專注於 RF 測試系統、精密治具、熱管理及具備可製造性（DFM）的機構設計。此版本作品集旨在為招聘與技術審查提供精簡、專業且數據導向的呈現。
         </div>
+        <div class="btnrow">
+          <a class="btn btn-dark" href="#projects">查看精選專案</a>
+          <a class="btn btn-light" href="#contact">聯絡我</a>
+        </div>
+      </div>
+
+      <div class="sidebarbox">
+        <div class="card">
+          <div class="card-title">Seeking Roles</div>
+          <div style="display:grid;gap:8px;font-size:14px;color:#334155;">
+            <div>機構設計工程師</div>
+            <div>RF / 測試治具設計</div>
+            <div>精密設備 / 自動化</div>
+            <div>熱管理 / 機箱設計</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">核心優勢</div>
+          <div class="pills">
+            <span class="pill">SolidWorks</span>
+            <span class="pill">GD&amp;T</span>
+            <span class="pill">公差分析</span>
+            <span class="pill">FEA</span>
+            <span class="pill">熱流模擬 (CFD)</span>
+            <span class="pill">RF 屏蔽設計</span>
+          </div>
+        </div>
+        <div class="card dark">
+          <div class="card-title">專業價值</div>
+          <div style="font-size:14px;line-height:1.9;color:#f8fafc;">
+            致力於在工程性能、數據穩定性與生產實務之間取得最佳平衡，並優化組裝流程與量測精度。
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section id="experience" class="py-24 bg-slate-900/30 px-6 border-y border-slate-800">
-        <div class="max-w-5xl mx-auto">
-            <h2 class="text-3xl font-bold mb-16 italic uppercase"><span lang="en">Work Experience</span><span lang="zh">工作經歷</span></h2>
-            
-            <div class="space-y-12">
-                <div class="relative pl-8 border-l border-slate-700">
-                    <div class="absolute -left-1.5 top-0 w-3 h-3 bg-cyan-500 rounded-full shadow-[0_0_10px_#22d3ee]"></div>
-                    <div class="flex flex-wrap justify-between items-start mb-4">
-                        <div>
-                            <h3 class="text-xl font-bold text-white uppercase">Mechanical Design Engineer</h3>
-                            <p class="text-cyan-400 font-mono text-sm">Ohmplus Technology Inc.</p>
-                        </div>
-                        <span class="text-slate-500 font-bold text-xs">2024 - PRESENT</span>
-                    </div>
-                    <ul class="text-slate-400 text-sm space-y-3 list-disc pl-4">
-                        <li>Designed RF testing fixtures and precision motion mechanisms to improve stability.</li>
-                        <li>Developed manufacturable assemblies using SolidWorks, GD&T, and tolerance analysis.</li>
-                        <li>Resolved integration issues with RF and production teams, accelerating prototype readiness.</li>
-                    </ul>
-                </div>
-
-                <div class="relative pl-8 border-l border-slate-700">
-                    <div class="absolute -left-1.5 top-0 w-3 h-3 bg-slate-600 rounded-full"></div>
-                    <div class="flex flex-wrap justify-between items-start mb-4">
-                        <div>
-                            <h3 class="text-xl font-bold text-white uppercase">Product Manager</h3>
-                            <p class="text-slate-400 font-mono text-sm">Ohmplus Technology Inc.</p>
-                        </div>
-                        <span class="text-slate-500 font-bold text-xs">2021 - 2024</span>
-                    </div>
-                    <ul class="text-slate-400 text-sm space-y-3 list-disc pl-4">
-                        <li>Managed RF measurement equipment programs from concept to production.</li>
-                        <li>Coordinated engineering, manufacturing, and quality teams to meet schedules.</li>
-                        <li>Delivered multiple projects on time meeting quality and cost targets.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+    <section id="about" class="section">
+      <div class="section-eyebrow">About</div>
+      <h2>結合精密、可製造性與實戰部署的工程思維</h2>
+      <div class="section-sub">
+        作為歐姆佳科技 (Ohmplus Technology Inc.) 的機構設計工程師，我擅長開發複雜的 RF 量測環境。我能獨立完成從需求分析、建模模擬到最終驗證的完整開發流程，並確保設計方案能符合嚴苛的量測規範。
+      </div>
     </section>
 
-    <section id="projects" class="py-24 px-6">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-3xl font-bold mb-16 italic uppercase"><span lang="en">Featured Projects</span><span lang="zh">重點專案</span></h2>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="project-card rounded-2xl overflow-hidden flex flex-col">
-                    <div class="h-56 bg-slate-800 relative overflow-hidden">
-                        <img src="https://res.cloudinary.com/dv0jk958g/image/upload/v1772599026/Vertical_RF_Testing_System_Development_hvfik3.jpg" class="w-full h-full object-cover opacity-70 hover:opacity-100 transition duration-500">
-                    </div>
-                    <div class="p-8 flex flex-col flex-grow">
-                        <h3 class="text-lg font-bold mb-4 uppercase leading-tight">Vertical RF Testing System Development</h3>
-                        <div class="grid grid-cols-2 gap-2 mb-6">
-                            <div class="metric-tile"><p class="text-[9px] text-slate-500 uppercase">Changeover</p><p class="text-cyan-400 font-bold text-xs">< 2 min</p></div>
-                            <div class="metric-tile"><p class="text-[9px] text-slate-500 uppercase">Repeatability</p><p class="text-cyan-400 font-bold text-xs">±0.05mm</p></div>
-                        </div>
-                        <p class="text-slate-400 text-xs leading-relaxed mb-6">Built a vertical laboratory test infrastructure for antenna evaluation with repeatable measurements and operator safety.</p>
-                        <div class="mt-auto flex flex-wrap gap-2">
-                            <span class="skill-pill">FEA</span><span class="skill-pill">SolidWorks</span><span class="skill-pill">Laser Alignment</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card rounded-2xl overflow-hidden flex flex-col">
-                    <div class="h-56 bg-slate-800 grid grid-cols-2 gap-0.5">
-                        <img src="https://res.cloudinary.com/dv0jk958g/image/upload/v1772599009/RF_Module_Design_-_Beamforming_krnzno.jpg" class="w-full h-full object-cover opacity-70">
-                        <img src="https://res.cloudinary.com/dv0jk958g/image/upload/v1772599016/RF_Module_Design_-_UpDown_Converter_jd7fhf.jpg" class="w-full h-full object-cover opacity-70">
-                    </div>
-                    <div class="p-8 flex flex-col flex-grow">
-                        <h3 class="text-lg font-bold mb-4 uppercase leading-tight">RF Module Design – Beamforming & Up/Down</h3>
-                        <div class="grid grid-cols-2 gap-2 mb-6">
-                            <div class="metric-tile"><p class="text-[9px] text-slate-500 uppercase">EOL Pass</p><p class="text-blue-400 font-bold text-xs">100%</p></div>
-                            <div class="metric-tile"><p class="text-[9px] text-slate-500 uppercase">Design</p><p class="text-blue-400 font-bold text-xs">EMC Ready</p></div>
-                        </div>
-                        <p class="text-slate-400 text-xs leading-relaxed mb-6">Designed reusable RF modules balancing thermal performance, EMC compliance, and user-friendly interface.</p>
-                        <div class="mt-auto flex flex-wrap gap-2">
-                            <span class="skill-pill">CFD</span><span class="skill-pill">Thermal</span><span class="skill-pill">GD&T</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card rounded-2xl overflow-hidden flex flex-col">
-                    <div class="h-56 bg-slate-800 relative overflow-hidden">
-                        <img src="https://res.cloudinary.com/dv0jk958g/image/upload/v1772598989/Desktop_High-Frequency_RF_Test_Chamber_lvbdts.jpg" class="w-full h-full object-cover opacity-70 hover:opacity-100 transition duration-500">
-                    </div>
-                    <div class="p-8 flex flex-col flex-grow">
-                        <h3 class="text-lg font-bold mb-4 uppercase leading-tight">Desktop High-Frequency RF Test Chamber</h3>
-                        <div class="grid grid-cols-2 gap-2 mb-6">
-                            <div class="metric-tile"><p class="text-[9px] text-slate-500 uppercase">Frequency</p><p class="text-indigo-400 font-bold text-xs">1–67 GHz</p></div>
-                            <div class="metric-tile"><p class="text-[9px] text-slate-500 uppercase">Isolation</p><p class="text-indigo-400 font-bold text-xs">≥ 100 dB</p></div>
-                        </div>
-                        <p class="text-slate-400 text-xs leading-relaxed mb-6">Portable RF measurement enclosure with high isolation and geometric repeatability for National Defense University.</p>
-                        <div class="mt-auto flex flex-wrap gap-2">
-                            <span class="skill-pill">Shielding</span><span class="skill-pill">mmWave</span><span class="skill-pill">Portable</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section id="experience" class="section">
+      <div class="section-eyebrow">Experience</div>
+      <h2>工作經歷</h2>
+      <div class="stack" style="margin-top:20px;">
+        <div class="job">
+          <div class="job-top">
+            <div><h3>機構設計工程師</h3><div class="muted">歐姆佳科技 (Ohmplus Technology Inc.)</div></div>
+            <div class="muted" style="font-weight:600;">2024年6月 – 至今</div>
+          </div>
+          <ul class="clean">
+            <li><span class="dot"></span><span>設計 RF 測試治具與精密運動機構，顯著提升天線與無線模組驗證的測試穩定度與重複性。</span></li>
+            <li><span class="dot"></span><span>利用 SolidWorks 進行建模，並導入 GD&amp;T 與公差分析技術，優化組件的可製造性，降低組裝風險。</span></li>
+            <li><span class="dot"></span><span>與 RF 電性團隊協作，解決量測系統的調試問題，加速原型開發與整合進度。</span></li>
+          </ul>
         </div>
+
+        <div class="job">
+          <div class="job-top">
+            <div><h3>產品經理</h3><div class="muted">歐姆佳科技 (Ohmplus Technology Inc.)</div></div>
+            <div class="muted" style="font-weight:600;">2021年6月 – 2024年6月</div>
+          </div>
+          <ul class="clean">
+            <li><span class="dot"></span><span>管理 RF 量測設備開發專案，負責從概念設計到量產的技術範疇定義與時程控管。</span></li>
+            <li><span class="dot"></span><span>跨部門協調工程、製造與品質團隊，確保專案符合品質要求並如期交付。</span></li>
+          </ul>
+        </div>
+      </div>
     </section>
 
-    <footer id="contact" class="py-24 border-t border-slate-800 px-6">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-4xl font-bold mb-8 uppercase"><span lang="en">Get In Touch</span><span lang="zh">與我聯繫</span></h2>
-            <div class="flex flex-wrap justify-center gap-12 mb-16">
-                <div>
-                    <p class="text-slate-500 text-[10px] uppercase tracking-widest mb-2">Direct Email</p>
-                    <a href="mailto:jams923@hotmail.com" class="text-xl font-bold hover:text-cyan-400 transition">jams923@hotmail.com</a>
-                </div>
-                <div>
-                    <p class="text-slate-500 text-[10px] uppercase tracking-widest mb-2">Professional Network</p>
-                    <a href="https://www.linkedin.com/in/chung-hsuan-huang-856a69372/" target="_blank" class="text-xl font-bold hover:text-cyan-400 transition">LinkedIn Profile</a>
-                </div>
-            </div>
-            <p class="text-slate-600 text-[10px] tracking-[0.5em] uppercase italic">Precision | Integrity | Innovation</p>
+    <section id="skills" class="section">
+      <div class="section-eyebrow">Skills</div>
+      <h2>技術實力</h2>
+      <div class="grid-4" style="margin-top:20px;">
+        <div class="skill-box">
+          <div class="card-title">核心工程</div>
+          <div class="pills">
+            <span class="pill">SolidWorks</span><span class="pill">AutoCAD</span><span class="pill">GD&amp;T</span><span class="pill">DFM / DFA</span><span class="pill">公差分析</span><span class="pill">精密機構設計</span>
+          </div>
         </div>
-    </footer>
+        <div class="skill-box">
+          <div class="card-title">模擬分析</div>
+          <div class="pills">
+            <span class="pill">FEA</span><span class="pill">熱管理</span><span class="pill">CFD 模擬</span><span class="pill">結構評估</span>
+          </div>
+        </div>
+        <div class="skill-box">
+          <div class="card-title">製造與測試</div>
+          <div class="pills">
+            <span class="pill">RF 治具設計</span><span class="pill">EMC 屏蔽</span><span class="pill">精密組裝</span><span class="pill">雷射對準校正</span><span class="pill">CNC 加工協調</span>
+          </div>
+        </div>
+        <div class="skill-box">
+          <div class="card-title">技術文件</div>
+          <div class="pills">
+            <span class="pill">SOP 撰寫</span><span class="pill">工程變更 (ECN)</span><span class="pill">驗證報告</span><span class="pill">MS Office</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <script>
-        function toggleLang() {
-            const elements = document.querySelectorAll('[lang]');
-            elements.forEach(el => {
-                const isHidden = window.getComputedStyle(el).display === 'none';
-                el.style.display = isHidden ? (el.tagName === 'SPAN' ? 'inline' : 'block') : 'none';
-            });
-        }
-    </script>
+    <section id="projects" class="section">
+      <div class="section-eyebrow">Projects</div>
+      <h2>精選工程專案</h2>
+      <div class="section-sub">透過量化指標呈現技術方案對業務與研發的實際貢獻。</div>
+
+      <div class="projects" style="margin-top:20px;">
+        <div class="project">
+          <div class="project-visual single">
+            <img src="https://res.cloudinary.com/dv0jk958g/image/upload/v1772599026/Vertical_RF_Testing_System_Development_hvfik3.jpg" alt="垂直式 RF 測試系統">
+          </div>
+          <div class="metrics">
+            <div class="metric"><div class="metric-label">換料時間</div><div class="metric-value">&lt; 2 min</div></div>
+            <div class="metric"><div class="metric-label">效率提升</div><div class="metric-value">67%</div></div>
+            <div class="metric"><div class="metric-label">量測誤差</div><div class="metric-value">&lt; ±1mm</div></div>
+          </div>
+          <div class="min-title"><h3>垂直式 RF 測試系統開發</h3></div>
+          <div class="muted" style="margin-top:8px;font-size:12px;font-weight:600;">2022年5月 – 2022年9月</div>
+
+          <div style="margin-top:20px;">
+            <div class="card-title">專案背景與挑戰</div>
+            <div class="bodycopy" style="margin-top:8px;font-size:14px;">需建立一套垂直式實驗室測試基礎設施，用於天線與無線模組評估，重點在於確保高頻量測的重複性與操作安全性。</div>
+          </div>
+
+          <div style="margin-top:20px;">
+            <div class="card-title">工程行動</div>
+            <ul class="clean">
+              <li><span class="dot"></span><span>設計模組化反射面測試幾何結構</span></li>
+              <li><span class="dot"></span><span>開發自動化 DUT 升降與進出平台</span></li>
+              <li><span class="dot"></span><span>導入氣動壓緊機構與定位銷實現快速換料</span></li>
+              <li><span class="dot"></span><span>透過 FEA 驗證結構穩定度</span></li>
+            </ul>
+          </div>
+
+          <div class="tagrow">
+            <span class="pill">氣壓控制</span><span class="pill">精密定位</span><span class="pill">FEA</span>
+          </div>
+        </div>
+
+        <div class="project">
+          <div class="project-visual double">
+            <img src="https://res.cloudinary.com/dv0jk958g/image/upload/v1772599009/RF_Module_Design_-_Beamforming_krnzno.jpg" alt="波束成型模組">
+            <img src="https://res.cloudinary.com/dv0jk958g/image/upload/v1772599016/RF_Module_Design_-_UpDown_Converter_jd7fhf.jpg" alt="上下變頻器">
+          </div>
+          <div class="metrics">
+            <div class="metric"><div class="metric-label">EOL 通過率</div><div class="metric-value">100%</div></div>
+            <div class="metric"><div class="metric-label">熱管理</div><div class="metric-value">優化</div></div>
+            <div class="metric"><div class="metric-label">結構</div><div class="metric-value">標準化</div></div>
+          </div>
+          <div class="min-title"><h3>RF 模組設計 – 波束成型與上下變頻器</h3></div>
+          <div class="muted" style="margin-top:8px;font-size:12px;font-weight:600;">2024年10月 – 2024年12月</div>
+
+          <div style="margin-top:20px;">
+            <div class="card-title">專案背景與挑戰</div>
+            <div class="bodycopy" style="margin-top:8px;font-size:14px;">開發可重複使用的 RF 模組，需在緊湊體積內平衡熱性能、電磁相容性（EMC）與學生的易操作性。</div>
+          </div>
+
+          <div style="margin-top:20px;">
+            <div class="card-title">工程行動</div>
+            <ul class="clean">
+              <li><span class="dot"></span><span>執行 CFD 模擬優化散熱片幾何形狀</span></li>
+              <li><span class="dot"></span><span>設計具備導電縫隙密封的屏蔽機殼</span></li>
+              <li><span class="dot"></span><span>建立標準化架構降低開發成本</span></li>
+            </ul>
+          </div>
+
+          <div class="tagrow">
+            <span class="pill">CFD</span><span class="pill">EMC 屏蔽</span><span class="pill">DFM</span>
+          </div>
+        </div>
+
+        <div class="project">
+          <div class="project-visual single">
+            <img src="https://res.cloudinary.com/dv0jk958g/image/upload/v1772598989/Desktop_High-Frequency_RF_Test_Chamber_lvbdts.jpg" alt="高頻測試箱">
+          </div>
+          <div class="metrics">
+            <div class="metric"><div class="metric-label">頻率</div><div class="metric-value">1–67 GHz</div></div>
+            <div class="metric"><div class="metric-label">隔離度</div><div class="metric-value">≥ 100 dB</div></div>
+            <div class="metric"><div class="metric-label">換料</div><div class="metric-value">&lt; 90 sec</div></div>
+          </div>
+          <div class="min-title"><h3>桌上型高頻 RF 測試箱 (1–67 GHz)</h3></div>
+          <div class="muted" style="margin-top:8px;font-size:12px;font-weight:600;">2025年5月 – 2025年8月</div>
+
+          <div style="margin-top:20px;">
+            <div class="card-title">專案背景與挑戰</div>
+            <div class="bodycopy" style="margin-top:8px;font-size:14px;">在極嚴苛的體積限制下，達成極高的 RF 隔離度與幾何量測重複性。</div>
+          </div>
+
+          <div style="margin-top:20px;">
+            <div class="card-title">工程行動</div>
+            <ul class="clean">
+              <li><span class="dot"></span><span>採用刀口式密封（Knife-edge）優化屏蔽</span></li>
+              <li><span class="dot"></span><span>設計精密可調式喇叭天線定位治具</span></li>
+              <li><span class="dot"></span><span>優化吸波材料配置以涵蓋寬頻範圍</span></li>
+            </ul>
+          </div>
+
+          <div class="tagrow">
+            <span class="pill">屏蔽技術</span><span class="pill">寬頻量測</span><span class="pill">精密機構</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="two-col">
+      <div class="section">
+        <div class="section-eyebrow">Education</div>
+        <h2>學歷背景</h2>
+        <div class="job" style="margin-top:20px;">
+          <h3>工學學士 (B.S.)</h3>
+          <div class="muted" style="margin-top:6px;">明新科技大學 (MUST)</div>
+          <div class="muted" style="margin-top:12px;font-weight:600;">2006年9月 – 2009年6月</div>
+        </div>
+      </div>
+
+      <div id="contact" class="section contact">
+        <div class="section-eyebrow">Contact</div>
+        <h2>準備好迎接挑戰，期待技術對談</h2>
+        <div class="section-sub">
+          對以上專案有興趣或有相關職缺需求，歡迎透過以下方式聯絡。
+        </div>
+
+        <div class="contact-boxes" style="margin-top:20px;">
+          <div class="contact-card">
+            <div class="contact-label">Email</div>
+            <a class="contact-link" href="mailto:jams923@hotmail.com">jams923@hotmail.com</a>
+          </div>
+          <div class="contact-card">
+            <div class="contact-label">LinkedIn</div>
+            <a class="contact-link" href="https://www.linkedin.com/in/chung-hsuan-huang-856a69372/" target="_blank" rel="noreferrer">查看 LinkedIn 個人檔案</a>
+          </div>
+        </div>
+
+        <div class="contact-actions">
+          <a class="btn" style="background:#fff;color:#0f172a;" href="Resume.pdf" download>下載完整履歷 (PDF)</a>
+        </div>
+      </div>
+    </section>
+  </div>
 </body>
 </html>
