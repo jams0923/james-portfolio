@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chung-Hsuan (James) Huang | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+TC:wght@400;700&display=swap');
+        body { font-family: 'Inter', 'Noto Sans TC', sans-serif; background-color: #020617; color: #f8fafc; scroll-behavior: smooth; }
+        .project-card { background: rgba(30, 41, 59, 0.4); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.4s ease; }
+        .project-card:hover { border-color: #22d3ee; transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); }
+        .gradient-text { background: linear-gradient(135deg, #22d3ee 0%, #3b82f6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        [lang="zh"] { display: none; }
+    </style>
+</head>
+<body>
+
+    <nav class="fixed w-full z-50 bg-[#020617]/90 backdrop-blur-md border-b border-slate-800 px-6 h-16 flex justify-between items-center">
+        <div class="text-lg font-bold gradient-text font-mono">CHUNG-HSUAN HUANG</div>
+        <div class="flex items-center space-x-6">
+            <button onclick="toggleLang()" class="text-xs border border-cyan-500/50 text-cyan-400 px-3 py-1 rounded-full hover:bg-cyan-500/10 transition">
+                <span lang="en">繁體中文</span><span lang="zh">English</span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="min-h-[60vh] flex items-center pt-24 px-6 max-w-5xl mx-auto">
+        <div>
+            <h2 class="text-cyan-500 font-mono mb-4 tracking-widest uppercase">
+                <span lang="en">// Mechanical Engineer | RF System Integrator</span>
+                <span lang="zh">// 機械設計工程師 | 射頻系統整合</span>
+            </h2>
+            <h1 class="text-5xl md:text-7xl font-bold mb-8 leading-tight">
+                <span lang="en">Engineering Precision for <br><span class="gradient-text">High-Frequency Systems</span></span>
+                <span lang="zh">為高頻系統打造<br><span class="gradient-text">精密工程解決方案</span></span>
+            </h1>
+            <p class="text-slate-400 text-lg max-w-3xl leading-relaxed">
+                <span lang="en">Specialized in mechanical architecture, thermal management, and EMI/EMC shielding for RF infrastructures. Delivering measurable results aligned with Engineers Australia (EA) standards.</span>
+                <span lang="zh">專長於射頻基礎設施的機械架構、熱傳管理與 EMI/EMC 屏蔽設計。依據 Engineers Australia (EA) 專業標準提供可量化的工程成果。</span>
+            </p>
+        </div>
+    </section>
+
+    <section id="projects" class="py-24 bg-slate-900/20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold mb-16 uppercase italic">
+                <span lang="en">Featured Projects</span><span lang="zh">重點工程專案</span>
+            </h2>
+
+            <div class="grid grid-cols-1 gap-12">
+                <div class="project-card rounded-2xl p-8 grid md:grid-cols-3 gap-8">
+                    <div class="md:col-span-1 bg-slate-800 rounded-xl flex flex-col items-center justify-center aspect-square text-slate-600">
+                        <i class="fas fa-arrows-alt-v text-6xl mb-4"></i>
+                        <p class="text-[10px] uppercase tracking-widest">Vertical Testing</p>
+                    </div>
+                    <div class="md:col-span-2">
+                        <h3 class="text-2xl font-bold mb-4">
+                            <span lang="en">Vertical RF Testing System Development</span>
+                            <span lang="zh">垂直式射頻測試系統開發</span>
+                        </h3>
+                        <p class="text-slate-400 text-sm mb-6">
+                            <span lang="en">Led mechanical architecture for vertical test beds, achieving repeatable positioning for DUT evaluation via FEA analysis.</span>
+                            <span lang="zh">主導垂直測試台的機械架構設計，透過有限元素分析 (FEA) 確保待測物 (DUT) 評估具備高度重複定位精度。</span>
+                        </p>
+                        <div class="border-l-2 border-cyan-500 pl-4">
+                            <p class="text-xs text-slate-500 uppercase">Metrics</p>
+                            <p class="text-cyan-400 font-bold">Repeatability < 0.05mm | Angular Error < ±0.2°</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card rounded-2xl p-8 grid md:grid-cols-3 gap-8">
+                    <div class="md:col-span-1 bg-slate-800 rounded-xl flex flex-col items-center justify-center aspect-square text-slate-600">
+                        <i class="fas fa-shield-alt text-6xl mb-4"></i>
+                        <p class="text-[10px] uppercase tracking-widest">mmWave Shielding</p>
+                    </div>
+                    <div class="md:col-span-2">
+                        <h3 class="text-2xl font-bold mb-4">
+                            <span lang="en">Desktop High-Frequency RF Test Chamber</span>
+                            <span lang="zh">桌上型高頻射頻測試腔體</span>
+                        </h3>
+                        <p class="text-slate-400 text-sm mb-6">
+                            <span lang="en">Developed high-isolation portable shielding cabinets for mmWave measurements at National Defense University.</span>
+                            <span lang="zh">為國防大學開發用於毫米波 (mmWave) 量測的高隔離度便攜式屏蔽箱。</span>
+                        </p>
+                        <div class="border-l-2 border-indigo-500 pl-4">
+                            <p class="text-xs text-slate-500 uppercase">Performance</p>
+                            <p class="text-indigo-400 font-bold">Isolation ≥ 100 dB | Changeover < 90 sec</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-20 border-t border-slate-800 text-center text-slate-600 text-[10px] tracking-widest uppercase">
+        © 2026 Chung-Hsuan Huang. Professional Profile.
+    </footer>
+
+    <script>
+        function toggleLang() {
+            const elements = document.querySelectorAll('[lang]');
+            elements.forEach(el => {
+                el.style.display = (window.getComputedStyle(el).display === 'none') ? 'inline-block' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>
