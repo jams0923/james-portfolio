@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>黃仲瑄 James Huang | 機構設計工程師作品集</title>
+  <title>黃仲瑄 James Huang | 作品集 Portfolio</title>
   <style>
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -15,257 +15,201 @@
     }
     a { color: inherit; text-decoration: none; }
     .container { max-width: 1200px; margin: 0 auto; padding: 24px 16px; }
+    
+    /* 導覽列與語言切換 */
     .header {
-      position: sticky; top: 16px; z-index: 20;
+      position: sticky; top: 16px; z-index: 100;
       display: flex; justify-content: space-between; align-items: center;
       margin-bottom: 24px; padding: 14px 20px;
       background: rgba(255,255,255,.9); border: 1px solid rgba(255,255,255,.7);
       border-radius: 18px; backdrop-filter: blur(8px); box-shadow: 0 1px 3px rgba(0,0,0,.08);
     }
-    .nav { display: flex; gap: 20px; font-size: 14px; color: #475569; }
-    .nav a:hover { color: #0f172a; }
+    .nav-group { display: flex; align-items: center; gap: 24px; }
+    .nav { display: flex; gap: 20px; font-size: 14px; color: #475569; font-weight: 600; }
+    .lang-select {
+      padding: 6px 12px; border-radius: 10px; border: 1px solid #cbd5e1;
+      background: #fff; font-size: 13px; cursor: pointer; outline: none;
+    }
+
     .section {
       background: #fff; border: 1px solid #e2e8f0; border-radius: 24px;
       box-shadow: 0 1px 3px rgba(0,0,0,.06); padding: 40px; margin-bottom: 24px;
     }
-    .hero { display: grid; grid-template-columns: 1.35fr .65fr; gap: 32px; padding: 48px; }
+    
     .badge {
       display: inline-flex; padding: 6px 12px; border-radius: 999px;
       border: 1px solid #e2e8f0; background: #f8fafc; color: #475569;
-      font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .18em;
+      font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 12px;
     }
-    h1 { margin: 12px 0 0; font-size: 48px; line-height: 1.1; }
-    .subtitle { margin-top: 16px; font-size: 22px; font-weight: 700; color: #334155; }
-    .bodycopy { margin-top: 20px; font-size: 16px; line-height: 1.8; color: #475569; }
-    .btnrow { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 12px; }
-    .btn {
-      display: inline-block; padding: 14px 24px; border-radius: 18px;
-      font-size: 14px; font-weight: 700; box-shadow: 0 1px 3px rgba(0,0,0,.08);
-      cursor: pointer;
+
+    h1 { margin: 12px 0 0; font-size: 42px; line-height: 1.1; }
+    h2 { margin: 0 0 24px 0; font-size: 28px; border-bottom: 2px solid #f1f5f9; padding-bottom: 12px; }
+
+    /* 工作經歷加強版 */
+    .job { border-left: 3px solid #0f172a; padding-left: 24px; margin-bottom: 40px; position: relative; }
+    .job-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+    .job-title { font-size: 22px; font-weight: 800; color: #0f172a; }
+    .job-company { font-size: 18px; color: #64748b; font-weight: 600; }
+    .job-date { font-size: 14px; font-weight: 700; color: #94a3b8; }
+    .job-list { margin: 16px 0 0; padding: 0; list-style: none; }
+    .job-list li { margin-bottom: 10px; line-height: 1.7; color: #334155; position: relative; padding-left: 18px; }
+    .job-list li::before { content: "•"; position: absolute; left: 0; color: #0f172a; font-weight: bold; }
+
+    /* 聯絡資訊區分 */
+    .contact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 30px; }
+    .contact-card {
+      padding: 24px; border-radius: 20px; border: 1px solid #e2e8f0; background: #f8fafc;
+      transition: all 0.2s;
     }
-    .btn-dark { background: #0f172a; color: #fff; }
-    .btn-light { background: #fff; color: #334155; border: 1px solid #cbd5e1; }
-    .card { background: #fff; border-radius: 18px; padding: 20px; border: 1px solid #e2e8f0; margin-bottom: 16px; }
-    .card-title { font-size: 12px; font-weight: 800; text-transform: uppercase; color: #64748b; margin-bottom: 12px; letter-spacing: 0.1em;}
-    .section h2 { margin: 0 0 24px 0; font-size: 32px; border-bottom: 2px solid #f1f5f9; padding-bottom: 12px; }
-    .job { border: 1px solid #e2e8f0; border-radius: 20px; padding: 32px; margin-bottom: 24px; background: #fcfcfc; }
-    .job-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
-    .job h3 { margin: 0; font-size: 24px; color: #0f172a; }
-    .company { font-size: 18px; color: #64748b; font-weight: 600; margin-top: 4px; }
-    .date { font-weight: 700; color: #475569; }
-    ul.tech-list { margin: 20px 0 0; padding: 0; list-style: none; }
-    ul.tech-list li { display: flex; gap: 12px; margin-bottom: 14px; line-height: 1.7; color: #334155; }
-    .dot { width: 6px; height: 6px; border-radius: 50%; background: #0f172a; flex: 0 0 auto; margin-top: 10px; }
-    .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-    .skill-category { background: #f8fafc; padding: 24px; border-radius: 20px; border: 1px solid #e2e8f0; }
-    .pill { display: inline-flex; padding: 6px 14px; border-radius: 999px; border: 1px solid #cbd5e1; background: #fff; color: #334155; font-size: 13px; font-weight: 600; margin: 4px; }
-    .project-card { display: grid; grid-template-columns: 350px 1fr; gap: 32px; background: #fff; border: 1px solid #e2e8f0; border-radius: 24px; padding: 32px; margin-bottom: 32px; }
-    .project-image { border-radius: 18px; overflow: hidden; height: 260px; border: 1px solid #e2e8f0; }
-    .project-image img { width: 100%; height: 100%; object-fit: cover; }
-    .metrics-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
-    .metric-box { background: #f1f5f9; padding: 12px; border-radius: 14px; text-align: center; }
-    .metric-val { display: block; font-size: 18px; font-weight: 800; color: #0f172a; }
-    .metric-lab { font-size: 10px; color: #64748b; text-transform: uppercase; font-weight: 700; }
-    .project-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 20px; border-top: 1px solid #f1f5f9; padding-top: 20px; }
-    .detail-h4 { font-size: 13px; font-weight: 800; color: #94a3b8; text-transform: uppercase; margin: 0 0 10px 0; }
-    @media (max-width: 1024px) { .hero, .project-card, .skills-grid, .project-detail-grid { grid-template-columns: 1fr; } }
+    .contact-card:hover { border-color: #0f172a; background: #fff; }
+    .contact-label {
+      display: block; font-size: 12px; font-weight: 800; text-transform: uppercase;
+      letter-spacing: 0.15em; color: #94a3b8; margin-bottom: 8px;
+    }
+    .contact-main-text {
+      display: block; font-size: 18px; font-weight: 700; color: #0f172a; margin-bottom: 12px;
+    }
+    .contact-link-btn {
+      display: inline-flex; align-items: center; padding: 8px 16px; background: #0f172a;
+      color: #fff; border-radius: 12px; font-size: 13px; font-weight: 600; transition: opacity 0.2s;
+    }
+    .contact-link-btn:hover { opacity: 0.9; }
+
+    /* 多語系隱藏/顯示 */
+    [lang="en"] { display: none; }
+
+    @media (max-width: 768px) {
+      .header { flex-direction: column; gap: 16px; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .job-header { flex-direction: column; }
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <header class="header">
-      <div style="font-weight:800; font-size:18px;">JAMES HUANG</div>
-      <nav class="nav">
-        <a href="#experience">工作經歷</a>
-        <a href="#skills">技術專長</a>
-        <a href="#projects">精選專案</a>
-      </nav>
+      <div style="font-weight:800; font-size:18px;">James Huang</div>
+      <div class="nav-group">
+        <nav class="nav">
+          <a href="#experience" class="lang-zh">經歷</a>
+          <a href="#experience" class="lang-en" style="display:none;">Experience</a>
+          <a href="#projects" class="lang-zh">專案</a>
+          <a href="#projects" class="lang-en" style="display:none;">Projects</a>
+        </nav>
+        <select class="lang-select" onchange="switchLang(this.value)">
+          <option value="zh">繁體中文</option>
+          <option value="en">English</option>
+        </select>
+      </div>
     </header>
 
-    <section class="section hero">
-      <div>
-        <div class="badge">Mechanical Engineer Portfolio</div>
+    <section class="section">
+      <div lang="zh">
+        <div class="badge">機構設計作品集</div>
         <h1>黃仲瑄 | James Huang</h1>
-        <div class="subtitle">機構設計工程師 | RF 測試治具 | 精密運動機構</div>
-        <div class="bodycopy">
-          具備深厚的精密機構開發與 RF 測試環境建置經驗。擅長應用 <b>SolidWorks</b> 進行高精度建模，並結合 <b>GD&T</b> 幾何公差與公差分析確保設計的可製造性。在歐姆佳科技期間，成功將抽象的量測需求轉化為具備 <b>EMC 屏蔽</b>、<b>熱管理</b> 與 <b>自動化定位</b> 功能的生產設備。
-        </div>
-        <div class="btnrow">
-          <a class="btn btn-dark" href="#projects">查看技術專案</a>
-          <a class="btn btn-light" href="https://www.linkedin.com/in/chung-hsuan-huang-856a69372/" target="_blank">LinkedIn</a>
-        </div>
+        <p class="bodycopy" style="font-size: 18px; line-height: 1.8; color: #475569;">
+          專注於 <b>RF 測試系統</b>、<b>精密治具</b>與<b>熱管理設計</b>。具備從需求分析、SolidWorks 建模、GD&T 公差分析到量產驗證的全流程開發經驗。
+        </p>
       </div>
-      <div>
-        <div class="card" style="background: #0f172a; color: #fff;">
-          <div class="card-title" style="color: #94a3b8;">核心價值</div>
-          <p style="font-size: 14px; line-height: 1.8;">專注於「為量測穩定性而設計」，整合機械剛性分析與電子屏蔽需求，解決高頻測試中的物理誤差挑戰。</p>
-        </div>
-        <div class="card">
-          <div class="card-title">專業工具</div>
-          <div class="pills">
-            <span class="pill">SolidWorks</span><span class="pill">AutoCAD</span><span class="pill">FEA</span><span class="pill">CFD</span><span class="pill">GD&T</span>
-          </div>
-        </div>
+      <div lang="en">
+        <div class="badge">Mechanical Portfolio</div>
+        <h1>James Huang</h1>
+        <p class="bodycopy" style="font-size: 18px; line-height: 1.8; color: #475569;">
+          Specializing in <b>RF Test Systems</b>, <b>Precision Fixtures</b>, and <b>Thermal Management</b>. Experienced in the full development lifecycle from SolidWorks modeling and GD&T analysis to mass production validation.
+        </p>
       </div>
     </section>
 
     <section id="experience" class="section">
-      <div class="badge" style="margin-bottom:12px;">Work Experience</div>
-      <h2>工作經歷詳述</h2>
+      <h2 lang="zh">工作經歷</h2>
+      <h2 lang="en">Work Experience</h2>
+
+      <div class="job">
+        <div class="job-header">
+          <div>
+            <div class="job-title lang-zh">機構設計工程師</div>
+            <div class="job-title lang-en" style="display:none;">Mechanical Design Engineer</div>
+            <div class="job-company">歐姆佳科技 (Ohmplus Technology Inc.)</div>
+          </div>
+          <div class="job-date">2024.06 – Present</div>
+        </div>
+        <ul class="job-list lang-zh">
+          <li><b>RF 測試環境建置：</b>主導 1-67GHz 測試治具開發，應用 GD&T 規劃基準鏈，確保量測基線誤差 < ±1mm。</li>
+          <li><b>精密公差管理：</b>執行 Tolerance Stack-up 分析，與供應商進行 DFM/DFA 評審，管理 ECN 工程變更。</li>
+          <li><b>驗證與校正：</b>使用 FARO Arm 與雷射校準（Laser Alignment）建立標準化組裝 SOP。</li>
+          <li><b>品質控制：</b>依據 FMEA 評估設計風險，負責 AQL 進料檢驗與受控圖面發布。</li>
+        </ul>
+        <ul class="job-list lang-en" style="display:none;">
+          <li><b>RF Test Environment:</b> Led 1-67GHz fixture development, applying GD&T for datum chains (error < ±1mm).</li>
+          <li><b>Tolerance Management:</b> Conducted Tolerance Stack-up and DFM/DFA reviews with suppliers; managed ECNs.</li>
+          <li><b>Validation:</b> Utilized FARO Arm and Laser Alignment to establish standardized assembly SOPs.</li>
+          <li><b>Quality Control:</b> Performed FMEA risk assessments and managed AQL inspections and controlled drawings.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <div>
+            <div class="job-title lang-zh">產品經理</div>
+            <div class="job-title lang-en" style="display:none;">Product Manager</div>
+            <div class="job-company">歐姆佳科技 (Ohmplus Technology Inc.)</div>
+          </div>
+          <div class="job-date">2021.06 – 2024.06</div>
+        </div>
+        <ul class="job-list lang-zh">
+          <li><b>產品生命週期：</b>定義 RF 量測設備規格，協調研發、採購與生產團隊達成專案里程碑。</li>
+          <li><b>進度與成本：</b>控管專案時程，確保產品符合 ISO 品質要求並如期交付。</li>
+          <li><b>跨部門整合：</b>將客戶量測需求轉化為具體的機械與電性研發指標。</li>
+        </ul>
+        <ul class="job-list lang-en" style="display:none;">
+          <li><b>Product Lifecycle:</b> Defined RF equipment specs and coordinated R&D, Procurement, and Production teams.</li>
+          <li><b>Schedule & Cost:</b> Managed timelines to ensure project delivery under ISO quality standards.</li>
+          <li><b>Cross-functional Integration:</b> Translated client requirements into concrete mechanical/electrical targets.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <h2 lang="zh">聯絡資訊</h2>
+      <h2 lang="en">Contact Information</h2>
       
-      <div class="job">
-        <div class="job-header">
-          <div>
-            <h3>機構設計工程師</h3>
-            <div class="company">歐姆佳科技股份有限公司 (Ohmplus Technology Inc.)</div>
-          </div>
-          <div class="date">2024.06 – 至今</div>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <span class="contact-label lang-zh">電子郵件</span>
+          <span class="contact-label lang-en" style="display:none;">Email</span>
+          <span class="contact-main-text">jams923@hotmail.com</span>
+          <a href="mailto:jams923@hotmail.com" class="contact-link-btn">
+            <span lang="zh">發送郵件</span>
+            <span lang="en">Send Email</span>
+          </a>
         </div>
-        <ul class="tech-list">
-          <li><span class="dot"></span><span><b>RF 測試環境建置：</b>主導高頻 (1-67GHz) 測試治具與精密運動機構開發。應用 <b>GD&T</b> 規劃基準鏈與定位公差，確保距離與角度精度落實於關鍵零件，維持量測基線穩定。</span></li>
-          <li><span class="dot"></span><span><b>精密公差分析與管理：</b>執行 <b>Tolerance Stack-up</b> 分析，確保複雜組合件在量產時的互換性與功能性。管理受控圖面、BOM 表並與供應商進行 <b>DFM/DFA</b> 審查。</span></li>
-          <li><span class="dot"></span><span><b>品質驗證與校正：</b>使用 <b>FARO Arm</b> 量測臂與花崗岩平台檢驗關鍵維度。建立 <b>SOP</b> 與雷射對準流程（Laser Alignment），確保系統拆裝後能快速恢復初始精度。</span></li>
-          <li><span class="dot"></span><span><b>跨職能研發整合：</b>與 RF 電性團隊協作，將複雜的天線輻射場需求轉化為機械定位指標，縮短原型開發與調試週期。</span></li>
-        </ul>
-      </div>
 
-      <div class="job">
-        <div class="job-header">
-          <div>
-            <h3>產品經理</h3>
-            <div class="company">歐姆佳科技股份有限公司 (Ohmplus Technology Inc.)</div>
-          </div>
-          <div class="date">2021.06 – 2024.06</div>
-        </div>
-        <ul class="tech-list">
-          <li><span class="dot"></span><span><b>產品全生命週期管理：</b>負責 RF 量測設備從概念定義、技術規格書 (Technical Specs) 撰寫到量產交付。</span></li>
-          <li><span class="dot"></span><span><b>跨部門專案控管：</b>協調研發、採購與生產團隊，透過 <b>ECN</b> 工程變更與進度追蹤，確保專案符合品質、預算與交付時程。</span></li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="skills" class="section">
-      <div class="badge" style="margin-bottom:12px;">Technical Skill Set</div>
-      <h2>技術專長與工具</h2>
-      <div class="skills-grid">
-        <div class="skill-category">
-          <div class="card-title">機械設計與模擬分析</div>
-          <div class="pills">
-            <span class="pill">SolidWorks 3D 建模</span><span class="pill">FEA 結構靜力分析</span><span class="pill">CFD 熱流模擬</span><span class="pill">公差堆疊分析</span><span class="pill">GD&T 幾何公差</span><span class="pill">精密傳動機構設計</span>
-          </div>
-        </div>
-        <div class="skill-category">
-          <div class="card-title">製造工藝與品質控制</div>
-          <div class="pills">
-            <span class="pill">DFM / DFA</span><span class="pill">BOM / ECN 管理</span><span class="pill">CNC 加工製程</span><span class="pill">FARO Arm 量測驗證</span><span class="pill">SOP 技術文件撰寫</span><span class="pill">FMEA 失效模式分析</span>
-          </div>
+        <div class="contact-card">
+          <span class="contact-label lang-zh">職業社群</span>
+          <span class="contact-label lang-en" style="display:none;">Professional Network</span>
+          <span class="contact-main-text">LinkedIn Profile</span>
+          <a href="https://www.linkedin.com/in/chung-hsuan-huang-856a69372/" target="_blank" class="contact-link-btn">
+            <span lang="zh">查看個人檔案</span>
+            <span lang="en">View Profile</span>
+          </a>
         </div>
       </div>
     </section>
-
-    <section id="projects" class="section">
-      <div class="badge" style="margin-bottom:12px;">Featured Engineering Projects</div>
-      <h2>精選工程專案</h2>
-
-      <div class="project-card">
-        <div>
-          <div class="project-image">
-            <img src="https://res.cloudinary.com/dv0jk958g/image/upload/v1772599026/Vertical_RF_Testing_System_Development_hvfik3.jpg" alt="垂直式 RF 測試量測系統">
-          </div>
-          <div class="metrics-row">
-            <div class="metric-box"><span class="metric-val">±1mm</span><span class="metric-lab">距離誤差</span></div>
-            <div class="metric-box"><span class="metric-val">±0.2°</span><span class="metric-lab">角度精度</span></div>
-            <div class="metric-box"><span class="metric-val">0.05mm</span><span class="metric-lab">重複精度</span></div>
-          </div>
-        </div>
-        <div class="project-info">
-          <h3 style="margin:0;">垂直式 RF 測試量測系統開發 (CE1)</h3>
-          <div style="font-size:14px; color:#64748b; font-weight:600; margin-top:4px;">Lead Mechanical Engineer | 2022.05 - 2022.09</div>
-          <div class="project-detail-grid">
-            <div>
-              <div class="detail-h4">挑戰與技術背景</div>
-              <p style="font-size:14px; line-height:1.6;">需在受限垂直空間內建立天線反射面測試幾何。挑戰在於克服重力對結構剛性的影響，確保 Feed Antenna、反射面與 DUT 之間精確的相對幾何位置，並需整合氣壓安全鎖定機制。</p>
-            </div>
-            <div>
-              <div class="detail-h4">工程具體行動</div>
-              <ul class="tech-list" style="margin-top:0; font-size:14px;">
-                <li><span class="dot"></span><span>應用 <b>FEA</b> 進行框架結構剛性分析，優化模組化支撐架以減少撓曲。</span></li>
-                <li><span class="dot"></span><span>設計具備定位銷與自動化升降的 DUT 平台，將換料時間從 6min 縮短至 2min。</span></li>
-                <li><span class="dot"></span><span>導入雷射校正步驟與基準標記（Witness Marking），確保系統可重複對準。</span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div>
-          <div class="project-image">
-            <img src="https://res.cloudinary.com/dv0jk958g/image/upload/v1772599009/RF_Module_Design_-_Beamforming_krnzno.jpg" alt="RF 模組設計">
-          </div>
-          <div class="metrics-row">
-            <div class="metric-box"><span class="metric-val">100%</span><span class="metric-lab">EOL 通過率</span></div>
-            <div class="metric-box"><span class="metric-val">CFD</span><span class="metric-lab">熱流優化</span></div>
-            <div class="metric-box"><span class="metric-val">EMC</span><span class="metric-lab">屏蔽封閉</span></div>
-          </div>
-        </div>
-        <div class="project-info">
-          <h3 style="margin:0;">波束成型與上下變頻 RF 模組開發 (CE2)</h3>
-          <div style="font-size:14px; color:#64748b; font-weight:600; margin-top:4px;">Mechanical Design Lead | 2024.10 - 2024.12</div>
-          <div class="project-detail-grid">
-            <div>
-              <div class="detail-h4">設計核心</div>
-              <p style="font-size:14px; line-height:1.6;">針對高功率 RF 子板開發散熱與屏蔽兼備的機箱。核心問題在於極小空間內的熱傳導路徑規劃，以及防止導電接縫處的訊號洩漏（EMI/EMC）。</p>
-            </div>
-            <div>
-              <div class="detail-h4">工程具體行動</div>
-              <ul class="tech-list" style="margin-top:0; font-size:14px;">
-                <li><span class="dot"></span><span>執行 <b>CFD 模擬</b> 優化鰭片幾何與熱傳介面，使表面溫度符合安全規範。</span></li>
-                <li><span class="dot"></span><span>設計具備導電襯墊凹槽的鋁合金機殼，達成嚴苛的屏蔽需求。</span></li>
-                <li><span class="dot"></span><span>導入標準化孔位架構，大幅降低後續維護成本。</span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div>
-          <div class="project-image">
-            <img src="https://res.cloudinary.com/dv0jk958g/image/upload/v1772598989/Desktop_High-Frequency_RF_Test_Chamber_lvbdts.jpg" alt="高頻測試箱">
-          </div>
-          <div class="metrics-row">
-            <div class="metric-box"><span class="metric-val">≥100dB</span><span class="metric-lab">隔離度</span></div>
-            <div class="metric-box"><span class="metric-val">67GHz</span><span class="metric-lab">支援頻率</span></div>
-            <div class="metric-box"><span class="metric-val">≤0.1mm</span><span class="metric-lab">重組誤差</span></div>
-          </div>
-        </div>
-        <div class="project-info">
-          <h3 style="margin:0;">高頻桌上型屏蔽量測箱開發 (CE3)</h3>
-          <div style="font-size:14px; color:#64748b; font-weight:600; margin-top:4px;">Mechanical Design Engineer | 2025.05 - 2025.08</div>
-          <div class="project-detail-grid">
-            <div>
-              <div class="detail-h4">精密量測需求</div>
-              <p style="font-size:14px; line-height:1.6;">為國防大學開發便攜式量測箱。需在桌上型體積內整合喇叭天線治具、可調式試片夾具，並達成超高頻 (67GHz) 下的訊號絕對隔離。</p>
-            </div>
-            <div>
-              <div class="detail-h4">工程具體行動</div>
-              <ul class="tech-list" style="margin-top:0; font-size:14px;">
-                <li><span class="dot"></span><span>應用 <b>FMEA</b> 評估洩漏點，採用 <b>Knife-edge</b> 導電密封與特殊吸波材料佈置。</span></li>
-                <li><span class="dot"></span><span>設計微調定位機構，結合雷射校準確保 Horn Antenna 的指向重複性。</span></li>
-                <li><span class="dot"></span><span>撰寫完整 SOP 技術文件，讓學生操作時能達成極高的數據一致性。</span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer class="section" style="text-align:center; padding: 40px; background: #0f172a; color: #fff;">
-      <h2 style="color:#fff; border:none; margin-bottom:10px;">準備好進行技術對談</h2>
-      <p style="color:#94a3b8; margin-bottom:30px;">如果您對以上技術細節或專案經驗有興趣，歡迎聯絡我。</p>
-      <a class="btn" style="background:#fff; color:#0f172a;" href="mailto:jams923@hotmail.com">jams923@hotmail.com</a>
-    </footer>
   </div>
+
+  <script>
+    function switchLang(lang) {
+      const zhElements = document.querySelectorAll('[lang="zh"], .lang-zh');
+      const enElements = document.querySelectorAll('[lang="en"], .lang-en');
+
+      if (lang === 'en') {
+        zhElements.forEach(el => el.style.display = 'none');
+        enElements.forEach(el => el.style.display = 'block');
+      } else {
+        zhElements.forEach(el => el.style.display = 'block');
+        enElements.forEach(el => el.style.display = 'none');
+      }
+    }
+  </script>
 </body>
 </html>
